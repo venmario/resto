@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('/getToken', [AuthenticationController::class,'authenticate']);
+Route::post('/register',[AuthenticationController::class,'register']);
+
+Route::group(['middleware'=>['jwt.verify']], function(){
+    Route::post('/getUser',[AuthenticationController::class,'get_user']);
+    Route::get('/protected',[AuthenticationController::class,'protected']);
+    
 });
