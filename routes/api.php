@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,5 @@ Route::group(['middleware'=>['jwt.verify']], function(){
     Route::get('/protected',[AuthenticationController::class,'protected']);
     
 });
+
+Route::resource('order', OrderController::class);
