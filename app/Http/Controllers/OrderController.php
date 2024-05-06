@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Midtrans\Config;
 
 class OrderController extends Controller
 {
@@ -15,10 +16,10 @@ class OrderController extends Controller
     public function index()
     {
         //
-        \Midtrans\Config::$serverKey = env('CLIENT_KEY');
-        \Midtrans\Config::$isProduction = false;
-        \Midtrans\Config::$isSanitized = true;
-        \Midtrans\Config::$is3ds = true;
+        Config::$serverKey = env('SERVER_KEY');
+        Config::$isProduction = false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
@@ -33,7 +34,10 @@ class OrderController extends Controller
         );
         
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return response()->json($snapToken);
+        return response()->json([
+            'token' => $snapToken,
+            'redirect_url'=> "https://app.sandbox.midtrans.com/snap/v4/redirection/$snapToken"
+        ]);
     }
 
     /**
