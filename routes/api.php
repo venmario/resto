@@ -30,3 +30,4 @@ Route::group(['middleware'=>['jwt.verify']], function(){
 });
 
 Route::resource('order', OrderController::class);
+Route::post('test', [OrderController::class,'test']);

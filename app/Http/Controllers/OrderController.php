@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Midtrans\Config;
 
 class OrderController extends Controller
@@ -59,6 +60,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
+        return response()->json($request);
     }
 
     /**
@@ -104,5 +106,25 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function test(Request $request) {
+        $req = [
+            "transaction_time"=> $request->transaction_time,
+            "transaction_status"=> $request->transaction_status,
+            "transaction_id"=> $request->transaction_id,
+            "status_message"=> $request->status_message,
+            "status_code"=> $request->status_code,
+            "signature_key"=> $request->signature_key,
+            "settlement_time"=> $request->settlement_time,
+            "payment_type"=> $request->payment_type,
+            "order_id"=> $request->order_id,
+            "merchant_id"=> $request->merchant_id,
+            "gross_amount"=> $request->gross_amount,
+            "fraud_status"=> $request->fraud_status,
+            "currency"=> $request->currency,
+        ];            
+        Log::info("transaction request : ".$req);
+        return response()->json($request);
     }
 }
