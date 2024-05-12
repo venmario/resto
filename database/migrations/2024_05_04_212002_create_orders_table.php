@@ -15,9 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('book_at');
+            $table->dateTime('order_at');
+            $table->dateTime('finished_at');
             $table->integer('grandtotal');
+            $table->integer('grandtotalpoin');
             $table->dateTime('estimation');
+            $table->enum('type', ['dine in', 'pick up']);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
@@ -30,7 +33,7 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders', function (Blueprint $table){
+        Schema::dropIfExists('orders', function (Blueprint $table) {
             $table->dropForeign('user_id');
         });
     }

@@ -15,7 +15,7 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->foreignId('order_id')->constrained();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('variant_id')->constrained();
             $table->integer('price');
             $table->integer('poin');
             $table->integer('quantity');
@@ -29,9 +29,9 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_details', function (Blueprint $table){
+        Schema::dropIfExists('order_details', function (Blueprint $table) {
             $table->dropForeign('order_id');
-            $table->dropForeign('product_id');
+            $table->dropForeign('variant_id');
         });
     }
 }
