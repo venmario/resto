@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->integer('grandtotal');
             $table->integer('grandtotalpoin');
             $table->dateTime('estimation');
-            $table->enum('type', ['dine in', 'pick up']);
+            // $table->enum('type', ['dine in', 'pick up']);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

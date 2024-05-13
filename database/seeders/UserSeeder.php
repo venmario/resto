@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,5 +16,35 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('user')->insert([
+            'username' => 'admin',
+            'firstname' => 'admin',
+            'lastname' => 'rama',
+            'phonenumber' => '081234567891',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin123'),
+            'poin' => 1000,
+            'role_id' => 1,
+        ]);
+        DB::table('user')->insert([
+            'username' => 'rafael',
+            'firstname' => 'sugeng',
+            'lastname' => 'rafael',
+            'phonenumber' => '081234567892',
+            'email' => 'rafael@gmail.com',
+            'password' => Hash::make('rafael123'),
+            'poin' => 1000,
+            'role_id' => 3,
+        ]);
+        DB::table('user')->insert([
+            'username' => 'rama',
+            'firstname' => 'dion',
+            'lastname' => 'rama',
+            'phonenumber' => '081234567893',
+            'email' => 'rama@gmail.com',
+            'password' => Hash::make('rama123'),
+            'poin' => 1000,
+            'role_id' => 3,
+        ]);
     }
 }
