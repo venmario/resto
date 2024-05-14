@@ -16,9 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('price');
             $table->text('description');
-            $table->integer('poin');
             $table->string('image');
             $table->boolean('available');
             $table->foreignId('category_id')->constrained();
@@ -33,7 +31,7 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products', function(Blueprint $table){
+        Schema::dropIfExists('products', function (Blueprint $table) {
             $table->dropForeign('category_id');
         });
     }

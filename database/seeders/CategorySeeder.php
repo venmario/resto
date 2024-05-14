@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
         $categories = [
             ['name' => 'Makanan', 'parent_id' => null],
             ['name' => 'Minuman', 'parent_id' => null],
-            ['name' => 'Desser', 'parent_id' => null],
+            ['name' => 'Dessert', 'parent_id' => null],
             ['name' => 'Non Coffee', 'parent_id' => 2],
             ['name' => 'Refreshing Drink', 'parent_id' => 2],
             ['name' => 'Coffee', 'parent_id' => 2],
@@ -39,8 +39,10 @@ class CategorySeeder extends Seeder
             ['name' => 'Soup & Salad', 'parent_id' => 1],
         ];
 
+        $i=1;
         foreach ($categories as $category) {
             DB::table('categories')->insert([
+                'id'=>$i++,
                 'name' => $category['name'],
                 'parent_id' => $category['parent_id'],
             ]);
