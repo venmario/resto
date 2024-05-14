@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->boolean('available');
             $table->foreignId('category_id')->constrained();
+            $table->integer('price');
+            $table->integer('poin');
             $table->timestamps();
         });
     }
