@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('user')->insert([
+        DB::table('users')->insert([
             'username' => 'admin',
             'firstname' => 'admin',
             'lastname' => 'rama',
@@ -24,9 +24,9 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
             'poin' => 1000,
-            'rol' => 'admin',
+            'role' => 'admin',
         ]);
-        DB::table('user')->insert([
+        DB::table('users')->insert([
             'username' => 'rafael',
             'firstname' => 'sugeng',
             'lastname' => 'rafael',
@@ -34,9 +34,9 @@ class UserSeeder extends Seeder
             'email' => 'rafael@gmail.com',
             'password' => Hash::make('rafael123'),
             'poin' => 1000,
-            'rol' => 'cashier',
+            'role' => 'cashier',
         ]);
-        DB::table('user')->insert([
+        DB::table('users')->insert([
             'username' => 'rama',
             'firstname' => 'dion',
             'lastname' => 'rama',
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'email' => 'rama@gmail.com',
             'password' => Hash::make('rama123'),
             'poin' => 1000,
-            'rol' => 'customer',
+            'role' => 'customer',
         ]);
     }
 }

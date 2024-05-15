@@ -14,10 +14,13 @@ class AuthenticationController extends Controller
     //
     public function register(Request $request)
     {
-     //Validate data
-        $data = $request->only('name', 'email', 'password');
+        //Validate data
+        $data = $request->only('username', 'firstname', 'lastname', 'phonenumber', 'email', 'password');
         $validator = Validator::make($data, [
-            'name' => 'required|string',
+            'username' => 'required|string',
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'phonenumber' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6|max:50'
         ]);
@@ -26,12 +29,14 @@ class AuthenticationController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->getMessageBag()], 200);
         }
-
         //Request is valid, create new user
         $user = User::create([
-         'name' => $request->name,
-         'email' => $request->email,
-         'password' => bcrypt($request->password)
+            'username' => $request->username,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'phonenumber' => $request->phonenumber,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
         ]);
 
         //User created, return success response
@@ -70,14 +75,14 @@ class AuthenticationController extends Controller
                 ], 400);
             }
         } catch (JWTException $e) {
-            return $credentials;
+            // return $credentials;
             return response()->json([
                 'success' => false,
                 'message' => 'Could not create token.',
-                ], 500);
+            ], 500);
         }
 
-   //Token created, return with success response and jwt token
+        //Token created, return with success response and jwt token
         return response()->json([
             'success' => true,
             'token' => $token,
@@ -92,7 +97,8 @@ class AuthenticationController extends Controller
         return response()->json(['user' => $user]);
     }
 
-    public function protected() {
-        return response()->json(['test'=>'teset'],Response::HTTP_OK);
+    public function protected()
+    {
+        return response()->json(['test' => 'teset'], Response::HTTP_OK);
     }
 }

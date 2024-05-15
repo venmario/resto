@@ -20,15 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/getToken', [AuthenticationController::class,'authenticate']);
-Route::post('/register',[AuthenticationController::class,'register']);
+Route::post('/login', [AuthenticationController::class, 'authenticate']);
+Route::post('/register', [AuthenticationController::class, 'register']);
 
-Route::group(['middleware'=>['jwt.verify']], function(){
-    Route::post('/getUser',[AuthenticationController::class,'get_user']);
-    Route::get('/protected',[AuthenticationController::class,'protected']);
-    
+Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::post('/getUser', [AuthenticationController::class, 'get_user']);
+    Route::get('/protected', [AuthenticationController::class, 'protected']);
 });
 
 Route::resource('order', OrderController::class);
-Route::post('test', [OrderController::class,'test']);
-Route::get('getStatus/{id}',[OrderController::class,'getStatus']);
+Route::post('test', [OrderController::class, 'test']);
+Route::get('getStatus/{id}', [OrderController::class, 'getStatus']);
