@@ -15,11 +15,11 @@ class RoleSeeder extends Seeder
     public function run()
     {
         //
-        $roles = ['admin', 'kasir', 'user'];
-        foreach ($roles as $role) {
-            DB::table('roles')->insert([
-                'name' => $role,
-            ]);
-        }
+        // $roles = ['admin', 'kasir', 'user'];
+        // foreach ($roles as $role) {
+        //     DB::table('roles')->insert([
+        //         'name' => $role,
+        //     ]);
+        // }
     }
 }

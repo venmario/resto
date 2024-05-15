@@ -646,6 +646,267 @@ class ProductSeeder extends Seeder
                 'price' => 38,
                 'poin' => 38
             ],
+            [
+                'name' => 'Pure Orange',
+                'description' => 'Pure Orange',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 7,
+                'price' => 25,
+                'poin' => 25
+            ],
+            [
+                'name' => 'Avocado',
+                'description' => 'Avocado',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 7,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Water Melon',
+                'description' => 'Water Melon',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 7,
+                'price' => 25,
+                'poin' => 25
+            ],
+            [
+                'name' => 'Ryecy',
+                'description' => 'Ryecy',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 7,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Kumo',
+                'description' => 'Kumo',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 5,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Sexy Orange',
+                'description' => 'Sexy Orange',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 5,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'White Heart',
+                'description' => 'White Heart',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 5,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Summer Breeze',
+                'description' => 'Summer Breeze',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 5,
+                'price' => 32,
+                'poin' => 32
+            ],
+            [
+                'name' => 'Sober',
+                'description' => 'Sober',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 5,
+                'price' => 32,
+                'poin' => 32
+            ],
+            [
+                'name' => 'Hydrated',
+                'description' => 'Hydrated',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 5,
+                'price' => 32,
+                'poin' => 32
+            ],
+            [
+                'name' => 'Swiss Chocolate Hot',
+                'description' => 'Swiss Chocolate Hot',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 32,
+                'poin' => 32
+            ],
+            [
+                'name' => 'Swiss Chocolate Ice',
+                'description' => 'Swiss Chocolate Ice',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 32,
+                'poin' => 32
+            ],
+            [
+                'name' => 'Choco Oreo Blend',
+                'description' => 'Choco Oreo Blend',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Strawberry Blend',
+                'description' => 'Strawberry Blend',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Vanilla Hazelnut Blend',
+                'description' => 'Vanilla Hazelnut Blend',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Red Velvet Frappe',
+                'description' => 'Red Velvet Frappe',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 32,
+                'poin' => 32
+            ],
+            [
+                'name' => 'Mathca Milk Frappe',
+                'description' => 'Mathca Milk Frappe',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 32,
+                'poin' => 32
+            ],
+            [
+                'name' => 'Klepon Blend',
+                'description' => 'Klepon Blend',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 28,
+                'poin' => 28
+            ],
+            [
+                'name' => 'Ice Lychee Tea',
+                'description' => 'Ice Lychee Tea',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 25,
+                'poin' => 25
+            ],
+            [
+                'name' => 'Ice Strawberry Tea',
+                'description' => 'Ice Strawberry Tea',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 25,
+                'poin' => 25
+            ],
+            [
+                'name' => 'Ice Lemon Tea',
+                'description' => 'Ice Lemon Tea',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 25,
+                'poin' => 25
+            ],
+            [
+                'name' => 'Saparilla',
+                'description' => 'Saparilla',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 25,
+                'poin' => 25
+            ],
+            [
+                'name' => 'Tea Hot',
+                'description' => 'Tea Hot',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 10,
+                'poin' => 10
+            ],
+            [
+                'name' => 'Tea Ice',
+                'description' => 'Tea Ice',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 10,
+                'poin' => 10
+            ],
+            [
+                'name' => 'Mineral Water',
+                'description' => 'Mineral Water',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 4,
+                'price' => 10,
+                'poin' => 10
+            ],
+            [
+                'name' => 'Choco Oreo Waffle',
+                'description' => 'Choco Oreo Waffle',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 3,
+                'price' => 35,
+                'poin' => 35
+            ],
+            [
+                'name' => 'Cinnamon Fresh Toast',
+                'description' => 'Cinnamon Fresh Toast',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 3,
+                'price' => 35,
+                'poin' => 35
+            ],
+            [
+                'name' => 'Caramelized Croffle',
+                'description' => 'Caramelized Croffle',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 3,
+                'price' => 30,
+                'poin' => 30
+            ],
+            [
+                'name' => 'Honey Banana Fritter',
+                'description' => 'Honey Banana Fritter',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 3,
+                'price' => 30,
+                'poin' => 30
+            ],
         ];
 
         foreach ($products as $product) {

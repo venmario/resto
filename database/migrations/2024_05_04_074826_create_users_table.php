@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('poin');
-            $table->foreignId('role_id')->constrained();
+            $table->string('role');
+            // $table->foreignId('role_id')->constrained();
             $table->timestamps();
         });
     }
