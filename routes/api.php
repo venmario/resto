@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
-Route::group(['middleware' => ['jwt.verify']], function () {
+Route::group(['prefix' => 'product', 'middleware' => ['jwt.verify']], function () {
+    Route::get('/getProductByCategory', [ProductController::class, 'getProductByCategory']);
     Route::post('/getUser', [AuthenticationController::class, 'get_user']);
     Route::get('/protected', [AuthenticationController::class, 'protected']);
 });
