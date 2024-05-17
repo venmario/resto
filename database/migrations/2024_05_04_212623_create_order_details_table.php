@@ -14,7 +14,8 @@ class CreateOrderDetailsTable extends Migration
     public function up()
     {
         Schema::create('order_details', function (Blueprint $table) {
-            $table->foreignId('order_id')->constrained();
+            $table->string('order_id');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreignId('product_id')->constrained();
             $table->integer('price');
             $table->integer('poin');

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Midtrans\Config;
 use Midtrans\Snap;
@@ -22,6 +25,35 @@ class OrderController extends Controller
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
+    }
+    public function createOrder(Request $request)
+    {
+        $maxId = Order::max('id');
+        $nextId = $maxId ? ++$maxId : 'DS0001';
+
+        $orderdetail = $request->order_detail;
+        dd($orderdetail);
+
+        DB::beginTransaction();
+        try {
+            $order = $request->all();
+            $order['id'] = $nextId;
+            Order::insert($order);
+            DB::commit();
+            return response()->json(['order' => $order], Response::HTTP_OK);
+        } catch (Exception $e) {
+            DB::rollback();
+            $request->flash();
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getOrderByUser()
+    {
+    }
+
+    public function getOrderById($id)
+    {
     }
     public function index()
     {

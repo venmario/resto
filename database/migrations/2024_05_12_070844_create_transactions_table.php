@@ -15,7 +15,8 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained();
+            $table->string('order_id');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('gross_amount');
             $table->dateTime('transaction_time');
             $table->enum('transaction_status', ['pending', 'settlement', 'expire']);
