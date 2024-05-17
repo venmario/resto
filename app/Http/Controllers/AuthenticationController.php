@@ -64,7 +64,6 @@ class AuthenticationController extends Controller
 
         //Request is validated
         //Crean token
-        // $credentials = ['email'=>'abc@gmail.com','password'=>'12345'];
         try {
             $token = JWTAuth::attempt($credentials);
             // dd($token);

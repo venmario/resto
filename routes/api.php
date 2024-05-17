@@ -17,15 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
 Route::group(['prefix' => 'product', 'middleware' => ['jwt.verify']], function () {
-    Route::get('/getProductByCategory', [ProductController::class, 'getProductByCategory']);
+    Route::get('/getProductByCategory/{category}', [ProductController::class, 'getProductByCategory']);
+    Route::get('/getProductById/{product}', [ProductController::class, 'getProductById']);
     Route::post('/getUser', [AuthenticationController::class, 'get_user']);
     Route::get('/protected', [AuthenticationController::class, 'protected']);
 });
