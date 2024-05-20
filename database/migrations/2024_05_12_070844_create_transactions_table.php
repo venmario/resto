@@ -14,7 +14,7 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('transaction_id')->primary();
             $table->string('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('gross_amount');

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,12 +34,12 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::group(['prefix' => 'order'], function () {
         Route::post('/createOrder', [OrderController::class, 'createOrder']);
     });
+    Route::group(['prefix' => 'transaction'], function () {
+        Route::post('/createTransaction', [TransactionController::class, 'createTransaction']);
+    });
     Route::post('/getUser', [AuthenticationController::class, 'get_user']);
     Route::get('/protected', [AuthenticationController::class, 'protected']);
 });
 
-
-
-Route::resource('order', OrderController::class);
-Route::post('test', [OrderController::class, 'test']);
+Route::post('/transactionNotification', [TransactionController::class, 'transactionNotification']);
 Route::get('getStatus/{id}', [OrderController::class, 'getStatus']);

@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Transaction;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Midtrans\Config;
 use Midtrans\Snap;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class TransactionController extends Controller
 {
@@ -24,114 +31,106 @@ class TransactionController extends Controller
     }
     public function CreateTransaction(Request $request)
     {
-        $orderid = $request->order_id;
-        $params = [
-            'transaction_details' => [
-                'order_id' => $orderid,
-                'gross_amount' => 10000,
-            ],
-            'customer_details' => [
-                'first_name' => 'budi',
-                'last_name' => 'pratama',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ],
-            'page_expiry' => [
-                'duration' => 5,
-                'unit' => "minutes",
-            ],
-            "bca_va" => [
-                "va_number" => "081358084101",
-            ],
-            "enabled_payments" => [
-                "permata_va",
-                "bca_va",
-                "bni_va",
-                "bri_va",
-                "cimb_va",
-                "other_va",
-                "gopay",
-                "shopeepay",
-                "other_qris",
-            ],
-        ];
+        $maxId = Order::max('id');
+        $nextId = $maxId ? str_pad(++$maxId, 4, '0', STR_PAD_LEFT) : 'DS0001';
 
-        $snapToken = Snap::getSnapToken($params);
-        Log::info("snap token : " . $snapToken);
+        DB::beginTransaction();
+        try {
+            $order = $request->except('order_detail');
+            $order['id'] = $nextId;
+            $order['order_at'] = Carbon::now();
 
-        return response()->json([
-            'token' => $snapToken,
-            'redirect_url' => "https://app.sandbox.midtrans.com/snap/v4/redirection/$snapToken",
-        ]);
-    }
-    public function index()
-    {
-        //
-    }
+            $grandtotal = 0;
+            $grandtotalpoin = 0;
+            $orderDetails = $request->input('order_detail');
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+            foreach ($orderDetails as &$od) {
+                $od['order_id'] = $nextId;
+                $totalPrice = $od['price'] * $od['quantity'];
+                $totalPoin = $od['poin'] * $od['quantity'];
+                $grandtotal += $totalPrice;
+                $grandtotalpoin += $totalPoin;
+            }
+            $order['grandtotal'] = $grandtotal;
+            $order['grandtotalpoin'] = $grandtotalpoin;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $user = JWTAuth::authenticate($request->token);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaction $transaction)
-    {
-        //
-    }
+            $order['user_id'] = $user['id'];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaction $transaction)
-    {
-        //
+            $objOrder = Order::create($order);
+
+            $objOrder->product()->attach($orderDetails);
+            $params = [
+                'transaction_details' => [
+                    'order_id' => $nextId,
+                    'gross_amount' => $grandtotal,
+                ],
+                'customer_details' => [
+                    'first_name' => $user['firstname'],
+                    'last_name' => $user['lastname'],
+                    'email' => $user['email'],
+                    'phone' => $user['phonenumber'],
+                ],
+                'page_expiry' => [
+                    'duration' => 5,
+                    'unit' => "minutes",
+                ],
+                "bca_va" => [
+                    "va_number" => $user['phonenumber'],
+                ],
+                "enabled_payments" => [
+                    "permata_va",
+                    "bca_va",
+                    "bni_va",
+                    "bri_va",
+                    "cimb_va",
+                    "other_va",
+                    "gopay",
+                    "shopeepay",
+                    "other_qris",
+                ],
+            ];
+
+            $snapToken = Snap::getSnapToken($params);
+            Log::info("snap token : " . $snapToken);
+            DB::commit();
+            return response()->json([
+                'token' => $snapToken,
+                'redirect_url' => "https://app.sandbox.midtrans.com/snap/v4/redirection/$snapToken",
+            ], Response::HTTP_OK);
+        } catch (Exception $e) {
+            DB::rollBack();
+            $request->flash();
+            // dd($e->getTrace());
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Transaction $transaction)
+    public function transactionNotification(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Transaction $transaction)
-    {
-        //
+        $transactionData = $request->all();
+        Log::info("transaction data : " . json_encode($transactionData));
+        DB::beginTransaction();
+        try {
+            Log::info("finding a transaction");
+            $transaction = Transaction::find($transactionData['transaction_id']);
+            if ($transaction) {
+                if ($transaction->update($transactionData) === false) {
+                    Log::info("bad request");
+                }
+                Log::info("transaction updated");
+                DB::commit();
+            }
+            Log::info("no trasaction found");
+            Transaction::create($transactionData);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            $request->flash();
+            Log::error($e->getMessage());
+        }
     }
 }

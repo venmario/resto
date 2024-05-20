@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->dateTime('order_at');
-            $table->dateTime('finished_at');
+            $table->dateTime('finished_at')->nullable();
             $table->integer('grandtotal');
             $table->integer('grandtotalpoin');
             $table->dateTime('estimation');

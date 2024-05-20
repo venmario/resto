@@ -20,6 +20,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('price');
             $table->integer('poin');
             $table->integer('quantity');
+            $table->string('note')->nullable();
         });
     }
 
