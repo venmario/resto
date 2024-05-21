@@ -17,14 +17,14 @@ class CreateTransactionsTable extends Migration
             $table->uuid('transaction_id')->primary();
             $table->string('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->integer('gross_amount');
-            $table->dateTime('transaction_time');
-            $table->enum('transaction_status', ['pending', 'settlement', 'expire']);
-            $table->string('status_message');
-            $table->integer('status_code');
-            $table->dateTime('settlement_time');
-            $table->string('payment_type');
-            $table->boolean('fraud_status');
+            $table->double('gross_amount');
+            $table->dateTime('transaction_time')->nullable();
+            $table->string('transaction_status')->nullable();
+            $table->string('status_message')->nullable();
+            $table->integer('status_code')->nullable();
+            $table->dateTime('settlement_time')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('fraud_status')->nullable();
             $table->timestamps();
         });
     }

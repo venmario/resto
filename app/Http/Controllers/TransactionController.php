@@ -32,8 +32,8 @@ class TransactionController extends Controller
     public function CreateTransaction(Request $request)
     {
         $maxId = Order::max('id');
-        $nextId = $maxId ? str_pad(++$maxId, 4, '0', STR_PAD_LEFT) : 'DS0001';
-
+        $nextId = $maxId ? str_pad(++$maxId, 4, '0', STR_PAD_LEFT) : 'TES0001';
+        Log::info("nextId : " . $nextId);
         DB::beginTransaction();
         try {
             $order = $request->except('order_detail');
@@ -118,14 +118,32 @@ class TransactionController extends Controller
             Log::info("finding a transaction");
             $transaction = Transaction::find($transactionData['transaction_id']);
             if ($transaction) {
-                if ($transaction->update($transactionData) === false) {
-                    Log::info("bad request");
-                }
-                Log::info("transaction updated");
+                $transaction->order_id = $transactionData['order_id'];
+                $transaction->gross_amount = $transactionData['gross_amount'];
+                $transaction->transaction_time = $transactionData['transaction_time'];
+                $transaction->transaction_status = $transactionData['transaction_status'];
+                $transaction->status_message = $transactionData['status_message'];
+                $transaction->status_code = $transactionData['status_code'];
+                $transaction->settlement_time = isset($transactionData['settlement_time']) ? $transactionData['settlement_time'] : null;
+                $transaction->payment_type = isset($transactionData['payment_type']) ? $transactionData['payment_type'] : null;
+                $transaction->fraud_status = $transactionData['fraud_status'];
+                $transaction->save();
                 DB::commit();
+                return;
             }
             Log::info("no trasaction found");
-            Transaction::create($transactionData);
+            $transaction = new Transaction();
+            $transaction->transaction_id = $transactionData['transaction_id'];
+            $transaction->order_id = $transactionData['order_id'];
+            $transaction->gross_amount = $transactionData['gross_amount'];
+            $transaction->transaction_time = $transactionData['transaction_time'];
+            $transaction->transaction_status = $transactionData['transaction_status'];
+            $transaction->status_message = $transactionData['status_message'];
+            $transaction->status_code = $transactionData['status_code'];
+            $transaction->settlement_time = isset($transactionData['settlement_time']) ? $transactionData['settlement_time'] : null;
+            $transaction->payment_type = isset($transactionData['payment_type']) ? $transactionData['payment_type'] : null;
+            $transaction->fraud_status = $transactionData['fraud_status'];
+            $transaction->save();
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
