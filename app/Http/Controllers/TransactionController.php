@@ -32,7 +32,7 @@ class TransactionController extends Controller
     public function CreateTransaction(Request $request)
     {
         $maxId = Order::max('id');
-        $nextId = $maxId ? str_pad(++$maxId, 4, '0', STR_PAD_LEFT) : 'TES0001';
+        $nextId = $maxId ? str_pad(++$maxId, 4, '0', STR_PAD_LEFT) : 'TESTING0001';
         Log::info("nextId : " . $nextId);
         DB::beginTransaction();
         try {
@@ -73,19 +73,15 @@ class TransactionController extends Controller
                     'phone' => $user['phonenumber'],
                 ],
                 'page_expiry' => [
-                    'duration' => 5,
-                    'unit' => "minutes",
+                    'duration' => 1,
+                    'unit' => "hours",
                 ],
                 "bca_va" => [
                     "va_number" => $user['phonenumber'],
                 ],
                 "enabled_payments" => [
-                    "permata_va",
                     "bca_va",
-                    "bni_va",
                     "bri_va",
-                    "cimb_va",
-                    "other_va",
                     "gopay",
                     "shopeepay",
                     "other_qris",
