@@ -25,11 +25,11 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
+Route::group(['prefix' => 'product'], function () {
+    Route::get('/getProductByCategory/{category}', [ProductController::class, 'getProductByCategory']);
+    Route::get('/getProductById/{product}', [ProductController::class, 'getProductById']);
+});
 Route::group(['middleware' => ['jwt.verify']], function () {
-    Route::group(['prefix' => 'product'], function () {
-        Route::get('/getProductByCategory/{category}', [ProductController::class, 'getProductByCategory']);
-        Route::get('/getProductById/{product}', [ProductController::class, 'getProductById']);
-    });
 
     Route::group(['prefix' => 'order'], function () {
         Route::post('/createOrder', [OrderController::class, 'createOrder']);
