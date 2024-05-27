@@ -43,6 +43,7 @@ class TransactionController extends Controller
             $grandtotal = 0;
             $grandtotalpoin = 0;
             $orderDetails = $request->input('order_detail');
+            Log::info("od", $orderDetails);
 
             foreach ($orderDetails as &$od) {
                 $od['order_id'] = $nextId;
