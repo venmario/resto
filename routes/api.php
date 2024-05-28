@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/register', [AuthenticationController::class, 'register']);
+Route::post('/refresh',  [AuthenticationController::class, 'refresh']);
+
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/getProductByCategory/{category}', [ProductController::class, 'getProductByCategory']);

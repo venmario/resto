@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthenticationController extends Controller
@@ -89,15 +91,30 @@ class AuthenticationController extends Controller
     }
     public function get_user(Request $request)
     {
-        $this->validate($request, [
-            'token' => 'required'
-        ]);
-        $user = JWTAuth::authenticate($request->token);
+        //     $this->validate($request, [
+        //         'token' => 'required'
+        //     ]);
+
+        // $user = JWTAuth::authenticate($request->token);
+        $user = JWTAuth::parseToken()->authenticate();
         return response()->json(['user' => $user]);
     }
 
     public function protected()
     {
         return response()->json(['test' => 'teset'], Response::HTTP_OK);
+    }
+    public function refresh()
+    {
+        try {
+            $newToken = JWTAuth::parseToken()->refresh(true, true);
+            return response()->json(['status' => 'Token refreshed', 'token' => $newToken], Response::HTTP_OK);
+        } catch (Exception $e) {
+            if ($e instanceof TokenExpiredException) {
+                return response()->json(['status' => 'Refresh Token is Expired'], Response::HTTP_UNAUTHORIZED);
+            } else {
+                return response()->json(['status' => $e->getMessage()]);
+            }
+        }
     }
 }
