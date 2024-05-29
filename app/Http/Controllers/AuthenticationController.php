@@ -6,6 +6,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -27,12 +28,12 @@ class AuthenticationController extends Controller
             'password' => 'required|string|min:6|max:50'
         ]);
 
-        //Send failed response if request is not valid
+        //mengembalikan respon gagal jika validator gagal
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->getMessageBag()], Response::HTTP_BAD_GATEWAY);
+            return response()->json(['success' => false, 'message' => $validator->getMessageBag(), 'code' => Response::HTTP_BAD_REQUEST]);
         }
         //Request is valid, create new user
-        $user = User::create([
+        User::create([
             'username' => $request->username,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -41,40 +42,48 @@ class AuthenticationController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        //User created, return success response
+        //Data User terbuat, kembalikan success response
         return response()->json([
             'success' => true,
             'message' => 'User created successfully',
-            'data' => $user
-        ], Response::HTTP_OK);
+            'code' => Response::HTTP_OK
+        ]);
     }
 
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
+        Log::info("email : " . $request->email);
+        Log::info("password : " . $request->password);
         //Create token
         try {
             $token = JWTAuth::attempt($credentials);
             if (!$token) {
+                Log::info("Login credentials are invalid.");
                 return response()->json([
                     'success' => false,
                     'message' => 'Login credentials are invalid.',
-                ], Response::HTTP_NOT_FOUND);
+                    'code' => Response::HTTP_NOT_FOUND
+                ]);
             }
         } catch (JWTException $e) {
             // return $credentials;
+            Log::info("error login " . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Could not create token.',
-            ], 500);
+                'code' => 500
+            ]);
         }
 
         //Token created, return with success response and jwt token
+        Log::info("Token : $token");
         return response()->json([
             'success' => true,
             'token' => $token,
-        ], Response::HTTP_OK);
+            'code' => Response::HTTP_OK
+        ]);
     }
     public function get_user(Request $request)
     {
@@ -95,12 +104,12 @@ class AuthenticationController extends Controller
     {
         try {
             $newToken = JWTAuth::parseToken()->refresh(true, true);
-            return response()->json(['status' => 'Token refreshed', 'token' => $newToken], Response::HTTP_OK);
+            return response()->json(['status' => 'Token refreshed', 'token' => $newToken, 'code' => Response::HTTP_OK]);
         } catch (Exception $e) {
             if ($e instanceof TokenExpiredException) {
-                return response()->json(['status' => 'Refresh Token is Expired'], Response::HTTP_UNAUTHORIZED);
+                return response()->json(['status' => 'Refresh Token is Expired', 'code' => Response::HTTP_UNAUTHORIZED]);
             } else {
-                return response()->json(['status' => $e->getMessage()]);
+                return response()->json(['status' => $e->getMessage(), 'code' => Response::HTTP_INTERNAL_SERVER_ERROR]);
             }
         }
     }
