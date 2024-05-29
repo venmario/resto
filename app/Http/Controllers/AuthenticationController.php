@@ -19,17 +19,17 @@ class AuthenticationController extends Controller
         //Validate data
         $data = $request->only('username', 'firstname', 'lastname', 'phonenumber', 'email', 'password');
         $validator = Validator::make($data, [
-            'username' => 'required|string',
+            'username' => 'required|string|unique:users',
             'firstname' => 'required|string',
             'lastname' => 'required|string',
-            'phonenumber' => 'required|string',
+            'phonenumber' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6|max:50'
         ]);
 
         //Send failed response if request is not valid
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->getMessageBag()], 200);
+            return response()->json(['error' => $validator->getMessageBag()], Response::HTTP_BAD_GATEWAY);
         }
         //Request is valid, create new user
         $user = User::create([
@@ -53,27 +53,14 @@ class AuthenticationController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        //valid credential
-        $validator = Validator::make($credentials, [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6|max:50'
-        ]);
-
-        //Send failed response if request is not valid
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->getMessageBag()], 200);
-        }
-
-        //Request is validated
-        //Crean token
+        //Create token
         try {
             $token = JWTAuth::attempt($credentials);
-            // dd($token);
             if (!$token) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Login credentials are invalid.',
-                ], 400);
+                ], Response::HTTP_NOT_FOUND);
             }
         } catch (JWTException $e) {
             // return $credentials;
@@ -87,7 +74,7 @@ class AuthenticationController extends Controller
         return response()->json([
             'success' => true,
             'token' => $token,
-        ]);
+        ], Response::HTTP_OK);
     }
     public function get_user(Request $request)
     {
