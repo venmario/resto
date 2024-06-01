@@ -28,7 +28,7 @@ Route::post('/refresh',  [AuthenticationController::class, 'refresh']);
 
 
 Route::group(['prefix' => 'product'], function () {
-    Route::get('/getProductByCategory/{category}', [ProductController::class, 'getProductByCategory']);
+    Route::get('/getProductByCategory', [ProductController::class, 'getProductByCategory']);
     Route::get('/getProductById/{product}', [ProductController::class, 'getProductById']);
 });
 Route::group(['middleware' => ['jwt.verify']], function () {

@@ -9,13 +9,10 @@ use Illuminate\Http\Response;
 class ProductController extends Controller
 {
     //
-    public function getProductByCategory($categoryId)
+    public function getProductByCategory()
     {
-        $products = Product::with(['category' => function ($query) use ($categoryId) {
-            $query->where('id', $categoryId);
-        }])->get();
-
-        return response()->json($products, Response::HTTP_OK);
+        $categories = Category::with('product')->get();
+        return response()->json($categories, Response::HTTP_OK);
     }
 
     public function getProductById(Product $product)
