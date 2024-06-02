@@ -198,6 +198,7 @@ class TransactionController extends Controller
             $note = $product['pivot']['note'];
             $product = [
                 'name' => $product->name,
+                'image' => $product->image,
                 'quantity' => $productQty,
                 'description' => $product->description,
                 'price' => $price,
@@ -207,12 +208,14 @@ class TransactionController extends Controller
         }
 
         $date = Carbon::parse($order['updated_at']);
-        $formattedDate = $date->isoFormat('dddd, D MMM YYYY HH:mm');
+        $formattedDate = $date->isoFormat('dddd, D MMM YYYY');
+        $formattedTime = $date->isoFormat("HH:mm");
         $order = [
-            'order_id' => $order['order_id'],
+            'order_id' => $order['id'],
             'status' => $order['order_status'],
             'grandtotal' => $order['grandtotal'],
-            'updated_at' => $formattedDate,
+            'updated_at_date' => $formattedDate,
+            'updated_at_time' => $formattedTime,
             'details' => $products
         ];
         return response()->json($order);
