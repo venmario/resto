@@ -151,8 +151,6 @@ class TransactionController extends Controller
 
     public function getTransactions()
     {
-        DB::enableQueryLog();
-
         $user = JWTAuth::parseToken()->authenticate();
         $userId = $user->id;
         $transactions = Transaction::with(['order' => function ($query) use ($userId) {
@@ -160,7 +158,7 @@ class TransactionController extends Controller
         }])->where('transaction_status', 'settlement')->get();
         return response()->json($transactions);
     }
-    public function getTransactionById($orderId)
+    public function getOrderById($orderId)
     {
         $transaction = Order::with('product')->find($orderId);
         return response()->json($transaction);
