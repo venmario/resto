@@ -51,6 +51,7 @@ class TransactionController extends Controller
                 $totalPoin = $od['poin'] * $od['quantity'];
                 $grandtotal += $totalPrice;
                 $grandtotalpoin += $totalPoin;
+                $od['price'] *= 1000;
             }
             $order['grandtotal'] = $grandtotal;
             $order['grandtotalpoin'] = $grandtotalpoin;
