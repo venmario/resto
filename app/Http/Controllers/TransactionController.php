@@ -47,12 +47,12 @@ class TransactionController extends Controller
 
             foreach ($orderDetails as &$od) {
                 $od['order_id'] = $nextId;
-                $totalPrice = $od['price'] * $od['quantity'];
+                $totalPrice = $od['price'] * $od['quantity'] * 1000;
                 $totalPoin = $od['poin'] * $od['quantity'];
                 $grandtotal += $totalPrice;
                 $grandtotalpoin += $totalPoin;
             }
-            $order['grandtotal'] = $grandtotal * 1000;
+            $order['grandtotal'] = $grandtotal;
             $order['grandtotalpoin'] = $grandtotalpoin;
 
             $user = JWTAuth::authenticate($request->token);
