@@ -52,10 +52,7 @@ class AuthenticationController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
-        Log::info("email : " . $request->email);
-        Log::info("password : " . $request->password);
+        $credentials = $request->only('username', 'password');
         //Create token
         try {
             $token = JWTAuth::attempt($credentials);
@@ -79,11 +76,10 @@ class AuthenticationController extends Controller
 
         //Token created, return with success response and jwt token
         Log::info("Token : $token");
-        $user = JWTAuth::authenticate($token);
+
         return response()->json([
             'success' => true,
             'token' => $token,
-            'username' => $user->username,
             'code' => Response::HTTP_OK
         ]);
     }

@@ -9,6 +9,7 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $primaryKey = 'transaction_id';
+    public $keyType = "string";
     protected $guarded = [];
 
     public function order()

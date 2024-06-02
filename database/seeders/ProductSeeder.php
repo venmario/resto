@@ -386,6 +386,51 @@ class ProductSeeder extends Seeder
                 'poin' => 210
             ],
             [
+                'name' => 'Gorden Salad',
+                'description' => 'Gorden Salad',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 13,
+                'price' => 50,
+                'poin' => 50
+            ],
+            [
+                'name' => 'Sauted veggie',
+                'description' => 'Sauted veggie',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 13,
+                'price' => 50,
+                'poin' => 50
+            ],
+            [
+                'name' => 'Garlic Rosemary Potatot',
+                'description' => 'Garlic Rosemary Potatot',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 13,
+                'price' => 50,
+                'poin' => 50
+            ],
+            [
+                'name' => 'French Fries',
+                'description' => 'French Fries',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 13,
+                'price' => 50,
+                'poin' => 50
+            ],
+            [
+                'name' => 'Garlic Bread',
+                'description' => 'Garlic Bread',
+                'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'available' => 1,
+                'category_id' => 13,
+                'price' => 50,
+                'poin' => 50
+            ],
+            [
                 'name' => 'Wagyu Rib Eye MB +5 100gr',
                 'description' => 'Wagyu Rib Eye MB +5',
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
