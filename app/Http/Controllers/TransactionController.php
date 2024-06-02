@@ -52,7 +52,7 @@ class TransactionController extends Controller
                 $grandtotal += $totalPrice;
                 $grandtotalpoin += $totalPoin;
             }
-            $order['grandtotal'] = $grandtotal;
+            $order['grandtotal'] = $grandtotal * 1000;
             $order['grandtotalpoin'] = $grandtotalpoin;
 
             $user = JWTAuth::authenticate($request->token);
@@ -154,13 +154,67 @@ class TransactionController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
         $userId = $user->id;
         $transactions = Transaction::with(['order' => function ($query) use ($userId) {
-            $query->where('user_id', $userId);
+            $query->with('product')->where('user_id', $userId);
         }])->where('transaction_status', 'settlement')->get();
-        return response()->json($transactions);
+        $orders = [];
+        foreach ($transactions as $transaction) {
+
+            $totalItem = 0;
+            $products = [];
+            foreach ($transaction['order']['product'] as $product) {
+                $productQty = $product['pivot']['quantity'];
+                $note = $product['pivot']['note'];
+                $totalItem += $productQty;
+                $product = [
+                    'name' => $product->name,
+                    'quantity' => $productQty,
+                ];
+                $products[] = $product;
+            }
+            $date = Carbon::parse($transaction['order']['updated_at']);
+            $formattedDate = $date->isoFormat('dddd, D MMM YYYY HH:mm');
+
+            $order = [
+                'order_id' => $transaction['order_id'],
+                'status' => $transaction['order']['order_status'],
+                'grandtotal' => $transaction['order']['grandtotal'],
+                'total_item' => $totalItem,
+                'updated_at' => $formattedDate,
+                'details' => $products
+            ];
+
+            $orders[] = $order;
+        }
+        return response()->json($orders);
     }
     public function getOrderById($orderId)
     {
-        $transaction = Order::with('product')->find($orderId);
-        return response()->json($transaction);
+        $order = Order::with('product')->find($orderId);
+
+        $products = [];
+        foreach ($order['product'] as $product) {
+            $productQty = $product['pivot']['quantity'];
+            $price = $product['pivot']['price'];
+            $note = $product['pivot']['note'];
+            $product = [
+                'name' => $product->name,
+                'quantity' => $productQty,
+                'description' => $product->description,
+                'price' => $price,
+                'note' => $note
+            ];
+            $products[] = $product;
+        }
+
+        $date = Carbon::parse($order['updated_at']);
+        $formattedDate = $date->isoFormat('dddd, D MMM YYYY HH:mm');
+        $order = [
+            'order_id' => $order['order_id'],
+            'status' => $order['order_status'],
+            'grandtotal' => $order['grandtotal'],
+            'updated_at' => $formattedDate,
+            'details' => $products
+        ];
+        return response()->json($order);
     }
 }
