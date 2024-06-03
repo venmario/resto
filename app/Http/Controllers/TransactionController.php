@@ -196,6 +196,7 @@ class TransactionController extends Controller
             $formattedDate = $date->isoFormat('dddd, D MMM YYYY HH:mm');
 
             $order = [
+                'transaction_id' => $transaction['transaction_id'],
                 'order_id' => $transaction['order_id'],
                 'status' => $transaction['order']['order_status'],
                 'grandtotal' => $transaction['order']['grandtotal'],
@@ -208,9 +209,10 @@ class TransactionController extends Controller
         }
         return response()->json($orders);
     }
-    public function getOrderById($orderId)
+    public function getTransactionById($transactionId)
     {
-        $order = Order::with('product')->find($orderId);
+        $transaction = Transaction::with('order')->find($transactionId);
+        $order = $transaction['order'];
 
         $products = [];
         foreach ($order['product'] as $product) {
@@ -232,6 +234,12 @@ class TransactionController extends Controller
         $formattedDate = $date->isoFormat('dddd, D MMM YYYY');
         $formattedTime = $date->isoFormat("HH:mm");
         $order = [
+            'transaction_id' => $transaction['transaction_id'],
+            'issuer' => isset($transaction['issuer']) ? $transaction['issuer'] : null,
+            'va_number' => isset($transaction['va_number']) ? $transaction['va_number'] : null,
+            'bank' => isset($transaction['bank']) ? $transaction['bank'] : null,
+            'payment_type' => isset($transaction['payment_type']) ? $transaction['payment_type'] : null,
+            'snap_token' => $transaction['order']['snap_token'],
             'order_id' => $order['id'],
             'status' => $order['order_status'],
             'grandtotal' => $order['grandtotal'],
