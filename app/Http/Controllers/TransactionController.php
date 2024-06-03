@@ -177,7 +177,7 @@ class TransactionController extends Controller
         $userId = $user->id;
         $transactions = Transaction::with(['order' => function ($query) use ($userId) {
             $query->with('product')->where('user_id', $userId);
-        }])->where('transaction_status', 'settlement')->get();
+        }])->where('transaction_status', 'settlement')->orWhere('transaction_status', 'pending')->orderBy('updated_at', 'desc')->get();
         $orders = [];
         foreach ($transactions as $transaction) {
 
