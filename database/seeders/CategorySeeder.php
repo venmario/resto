@@ -45,6 +45,7 @@ class CategorySeeder extends Seeder
                 'id' => $i++,
                 'name' => $category['name'],
                 'parent_id' => $category['parent_id'],
+                "sequence" => $category["sequence"]
             ]);
         }
     }

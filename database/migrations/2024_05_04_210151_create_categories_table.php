@@ -20,7 +20,7 @@ class CreateCategoriesTable extends Migration
                 ->foreignId('parent_id')
                 ->nullable()
                 ->constrained('categories');
-            $table->integer('sequence');
+            $table->integer('sequence')->nullable();
             $table->timestamps();
         });
     }
