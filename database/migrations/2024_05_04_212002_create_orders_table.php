@@ -17,7 +17,8 @@ class CreateOrdersTable extends Migration
             $table->string('id')->primary();
             $table->dateTime('order_at');
             $table->dateTime('finished_at')->nullable();
-            $table->string('order_status')->default('waiting');
+            $table->string('order_status')->default('waiting payment');
+            $table->string('snap_token');
             $table->integer('grandtotal');
             $table->integer('grandtotalpoin');
             $table->dateTime('estimation');

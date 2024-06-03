@@ -24,6 +24,9 @@ class CreateTransactionsTable extends Migration
             $table->integer('status_code')->nullable();
             $table->dateTime('settlement_time')->nullable();
             $table->string('payment_type')->nullable();
+            $table->string('issuer')->nullable();
+            $table->string('va_number')->nullable();
+            $table->string('bank')->nullable();
             $table->string('fraud_status')->nullable();
             $table->timestamps();
         });

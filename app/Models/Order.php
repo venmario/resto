@@ -25,4 +25,17 @@ class Order extends Model
     {
         return $this->hasMany(Transaction::class, 'order_id', 'id');
     }
+
+    public static function generate_unique_6_digit()
+    {
+        $unique_id = uniqid('', true);
+        $hashed_id = hash('sha256', $unique_id);
+        return intval(substr($hashed_id, 0, 6), 16) % 900000 + 100000;
+    }
+
+    public static function generateOrderId()
+    {
+        $digits = Order::generate_unique_6_digit();
+        return date('Ym') . $digits;
+    }
 }

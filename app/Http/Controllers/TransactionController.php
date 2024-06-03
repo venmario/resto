@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Client\Response as ClientResponse;
@@ -31,8 +32,7 @@ class TransactionController extends Controller
     }
     public function CreateTransaction(Request $request)
     {
-        $maxId = Order::max('id');
-        $nextId = $maxId ? str_pad(++$maxId, 4, '0', STR_PAD_LEFT) : 'TESTING0001';
+        $nextId = Order::generateOrderId();
         Log::info("nextId : " . $nextId);
         DB::beginTransaction();
         try {
@@ -59,10 +59,6 @@ class TransactionController extends Controller
             $user = JWTAuth::authenticate($request->token);
 
             $order['user_id'] = $user['id'];
-
-            $objOrder = Order::create($order);
-
-            $objOrder->product()->attach($orderDetails);
             $params = [
                 'transaction_details' => [
                     'order_id' => $nextId,
@@ -92,6 +88,9 @@ class TransactionController extends Controller
 
             $snapToken = Snap::getSnapToken($params);
             Log::info("snap token : " . $snapToken);
+            $order['snap_token'] = $snapToken;
+            $objOrder = Order::create($order);
+            $objOrder->product()->attach($orderDetails);
             DB::commit();
             return response()->json([
                 'token' => $snapToken,
@@ -124,8 +123,20 @@ class TransactionController extends Controller
                 $transaction->status_code = $transactionData['status_code'];
                 $transaction->settlement_time = isset($transactionData['settlement_time']) ? $transactionData['settlement_time'] : null;
                 $transaction->payment_type = isset($transactionData['payment_type']) ? $transactionData['payment_type'] : null;
+                $transaction->issuer = isset($transactionData['issuer']) ? $transactionData['issuer'] : null;
+                $transaction->va_number = isset($transactionData['va_numbers']) ? $transactionData['va_numbers'][0]['va_number'] : null;
+                $transaction->bank = isset($transactionData['va_numbers']) ? $transactionData['va_numbers'][0]['bank'] : null;
                 $transaction->fraud_status = $transactionData['fraud_status'];
                 $transaction->save();
+                if ($transactionData['transaction_status'] == "settlement") {
+                    $order = Order::find($transaction->order_id);
+                    $userId = $order->user_id;
+                    $user = User::findOrFail($userId);
+                    $poin = $user->poin;
+                    $newPoin = $poin + (int)($transaction->gross_amount / 1000);
+                    $user->poin = $newPoin;
+                    $user->save();
+                }
                 DB::commit();
                 return;
             }
@@ -140,6 +151,9 @@ class TransactionController extends Controller
             $transaction->status_code = $transactionData['status_code'];
             $transaction->settlement_time = isset($transactionData['settlement_time']) ? $transactionData['settlement_time'] : null;
             $transaction->payment_type = isset($transactionData['payment_type']) ? $transactionData['payment_type'] : null;
+            $transaction->issuer = isset($transactionData['issuer']) ? $transactionData['issuer'] : null;
+            $transaction->va_number = isset($transactionData['va_numbers']) ? $transactionData['va_numbers'][0]['va_number'] : null;
+            $transaction->bank = isset($transactionData['va_numbers']) ? $transactionData['va_numbers'][0]['bank'] : null;
             $transaction->fraud_status = $transactionData['fraud_status'];
             $transaction->save();
             DB::commit();
