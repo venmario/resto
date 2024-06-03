@@ -129,8 +129,15 @@ class TransactionController extends Controller
                 $transaction->fraud_status = $transactionData['fraud_status'];
                 $transaction->save();
                 if ($transactionData['transaction_status'] == "settlement") {
+                    //ganti status order ke processing
                     $order = Order::find($transaction->order_id);
+                    $order->order_status = "processing";
+                    $order->save();
+
+                    //ambil id user
                     $userId = $order->user_id;
+
+                    //tambah poin user
                     $user = User::findOrFail($userId);
                     $poin = $user->poin;
                     $newPoin = $poin + (int)($transaction->gross_amount / 1000);
@@ -178,7 +185,6 @@ class TransactionController extends Controller
             $products = [];
             foreach ($transaction['order']['product'] as $product) {
                 $productQty = $product['pivot']['quantity'];
-                $note = $product['pivot']['note'];
                 $totalItem += $productQty;
                 $product = [
                     'name' => $product->name,
