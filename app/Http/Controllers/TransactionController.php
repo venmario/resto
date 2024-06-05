@@ -214,6 +214,9 @@ class TransactionController extends Controller
         $transaction = Transaction::with('order')->find($transactionId);
         $order = $transaction['order'];
 
+        $user = JWTAuth::parseToken()->authenticate();
+        $fullname = $user->firstname . " " . $user->lastname;
+
         $products = [];
         foreach ($order['product'] as $product) {
             $productQty = $product['pivot']['quantity'];
@@ -241,6 +244,7 @@ class TransactionController extends Controller
             'payment_type' => isset($transaction['payment_type']) ? $transaction['payment_type'] : null,
             'snap_token' => $transaction['order']['snap_token'],
             'order_id' => $order['id'],
+            'orderer_name' => $fullname,
             'status' => $order['order_status'],
             'grandtotal' => $order['grandtotal'],
             'updated_at_date' => $formattedDate,
