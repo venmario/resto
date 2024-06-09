@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('rafael123'),
             'poin' => 1000,
             'role' => 'cashier',
+            'is_cashier_active' => 0
         ]);
         DB::table('users')->insert([
             'username' => 'rama',

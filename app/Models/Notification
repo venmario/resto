@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+class Notification
+{
+  public function sendOrderReadyNotification(Order $order)
+  {
+  }
+
+  public function sendOrderRequest(Order $order)
+  {
+    $firebase = app('firebase.messaging');
+  }
+}

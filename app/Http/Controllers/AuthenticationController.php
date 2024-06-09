@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fcm;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -77,11 +79,58 @@ class AuthenticationController extends Controller
         //Token created, return with success response and jwt token
         Log::info("Token : $token");
 
+        $oldFcmToken = $request->oldFcmToken;
+        $currentFcmToken = $request->currentFcmToken;
+        Log::info("old fcm token : " . $oldFcmToken);
+        Log::info("current fcm token : " . $currentFcmToken);
+
+
+        $updatedFcmToken = false;
+        DB::beginTransaction();
+        try {
+            $user = User::where('username', $request->username)->first();
+            if ($oldFcmToken == $currentFcmToken) {
+                $userFcmTokens = $user->fcm;
+                $found = false;
+                foreach ($userFcmTokens as $userFcmToken) {
+                    if ($userFcmToken == $currentFcmToken) {
+                        $found = true;
+                        break;
+                    }
+                }
+                if (!$found) {
+                    Fcm::create(['fcm_token' => $currentFcmToken, 'user_id' => $user->id]);
+                    $updatedFcmToken = true;
+                }
+            } else {
+                Fcm::find($oldFcmToken)->delete();
+                Fcm::create(['fcm_token' => $currentFcmToken, 'user_id' => $user->id]);
+                $updatedFcmToken = true;
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error("error message : " . $e->getMessage());
+        }
+
+
         return response()->json([
             'success' => true,
             'token' => $token,
+            'updatedFcmToken' => $updatedFcmToken,
             'code' => Response::HTTP_OK
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $fcmToken = $request->fcmToken;
+        try {
+            Fcm::find($fcmToken)->delete();
+            return response()->json(['isSuccess' => true]);
+        } catch (Exception $e) {
+            return response()->json(['isSuccess' => false, 'errorMessage' => $e->getMessage()]);
+        }
     }
     public function get_user(Request $request)
     {

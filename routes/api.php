@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\Cashier\CashierController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
@@ -41,9 +42,11 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('/getTransactions', [TransactionController::class, 'getTransactions']);
         Route::get('/getTransactionById/{transactionId}', [TransactionController::class, 'getTransactionById']);
     });
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
     Route::post('/getUser', [AuthenticationController::class, 'get_user']);
     Route::get('/protected', [AuthenticationController::class, 'protected']);
 });
+Route::get('/orderReady/{order}', [CashierController::class, 'readyToPickUpOrder']);
 
 Route::post('/transactionNotification', [TransactionController::class, 'transactionNotification']);
 Route::get('getStatus/{id}', [OrderController::class, 'getStatus']);

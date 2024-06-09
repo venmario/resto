@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('poin')->default(0);
             $table->string('role')->default('customer');
+            $table->boolean('is_cashier_active')->nullable();
             // $table->foreignId('role_id')->constrained();
             $table->timestamps();
         });

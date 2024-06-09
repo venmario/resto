@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for restoapp on 2024-05-22T13:26:36+07:00
+# fly.toml app configuration file generated for restoapp on 2024-06-08T18:12:49+07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -10,7 +10,7 @@ console_command = 'php /var/www/html/artisan tinker'
 [build]
   [build.args]
     NODE_VERSION = '18'
-    PHP_VERSION = '7.4'
+    PHP_VERSION = '8.2'
 
 [env]
   APP_ENV = 'production'
