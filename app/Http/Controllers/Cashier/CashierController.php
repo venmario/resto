@@ -124,7 +124,14 @@ class CashierController extends Controller
                 'code' => 500
             ]);
         }
-
+        $user = User::where('username', $request->username)->first();
+        if ($user->role != "cashier") {
+            return response()->json([
+                'isSuccess' => false,
+                'errorMessage' => 'Unauthorized',
+                'code' => 403
+            ]);
+        }
         //Token created, return with success response and jwt token
         Log::info("Token : $token");
 
@@ -135,7 +142,6 @@ class CashierController extends Controller
 
 
         $updatedFcmToken = false;
-        $user = User::where('username', $request->username)->first();
         DB::beginTransaction();
         try {
             if ($oldFcmToken == $currentFcmToken) {
