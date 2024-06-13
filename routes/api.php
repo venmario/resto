@@ -49,6 +49,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
 Route::group(['prefix' => 'cashier'], function () {
     Route::group(['middleware' => ['jwt.verify', 'auth.cashier']], function () {
+        // Route::get('/getOrderById/{id}', [CashierController::class, 'getOrderById']);
         Route::get('/getTodaysOrder', [CashierController::class, 'getOrders']);
         Route::get('/orderReady/{order}', [CashierController::class, 'readyToPickUpOrder']);
         Route::post('/logout', [CashierController::class, 'logout']);

@@ -40,7 +40,7 @@ class CashierController extends Controller
             $order->order_status = "Collected";
             $order->finished_at = Carbon::now();
             $order->save();
-            $title = "Ready to pick up!";
+            $title = "Finished!";
             $body = "Order " . $order->id . " has picked up. Please enjoy the meal!";
             $notification = Notification::create($title, $body);
 
@@ -84,6 +84,30 @@ class CashierController extends Controller
         }
     }
 
+    public function getOrderById($id)
+    {
+        try {
+            $orderDetails = [];
+            Log::info("orderID : " . $id);
+            $order = Order::with('product')->where('id', $id)->get();
+            Log::info("order : " . $order);
+            foreach ($order['product'] as $od) {
+                $orderDetails[] = [
+                    'product' => $od['product']['name'],
+                    'quantity' => $od['product']['pivot']['quantity'],
+                    'price' => $od['product']['pivot']['quantity'],
+                    'note' => $od['product']['pivot']['note']
+                ];
+            }
+
+            // Log::info("new Order : " . $newOrder);
+            return response()->json(['isSuccess' => true, 'errorMessage' => null, 'data' => $orderDetails]);
+        } catch (Exception $e) {
+            Log::error($e->getMessage(), $e);
+            return response()->json(['isSuccess' => false, 'errorMessage' => "Something went wrong while getting order"]);
+        }
+    }
+
     public function getOrders()
     {
         try {
@@ -91,8 +115,49 @@ class CashierController extends Controller
                 $query->with(['product' => function ($query) {
                     $query->select("name")->withPivot("price", "quantity", "note")->get();
                 },  'user'])->get(); //order
-            }])->where('transaction_status', 'settlement')->where('settlement_time', '>',  Carbon::today())->get();
-            return response()->json(['isSuccess' => true, 'errorMessage' => null, 'data' => $transactions]);
+            }])->where('transaction_status', 'settlement')->where('settlement_time', '>',  Carbon::today())->orderBy("settlement_time", "desc")->get();
+
+
+            $statuses = [
+                [
+                    'status' => "processing",
+                    'orders' => []
+                ],
+                [
+                    'status' => 'Ready to Pick Up',
+                    'orders' => []
+                ],
+                [
+                    "status" => "Collected",
+                    'orders' => []
+                ]
+            ];
+
+            foreach ($transactions as $transaction) {
+                $status = $transaction['order']['order_status'];
+
+                $totalItem = 0;
+                $products = $transaction['order']['product'];
+                foreach ($products as $product) {
+                    $totalItem += $product['pivot']['quantity'];
+                }
+
+                $order = [
+                    'order_id' => $transaction['order_id'],
+                    'fullname' => $transaction['order']['user']['firstname'] . " " . $transaction['order']['user']['lastname'],
+                    'total_item' => $totalItem,
+                    'grand_total' => $transaction['order']['grandtotal']
+                ];
+                if ($status == "processing") {
+                    $statuses[0]['orders'][] = $order;
+                } else if ($status == "Ready to Pick Up") {
+                    $statuses[1]['orders'][] = $order;
+                } else if ($status == "Collected") {
+                    $statuses[2]['orders'][] = $order;
+                }
+            }
+
+            return response()->json(['isSuccess' => true, 'errorMessage' => null, 'data' => $statuses]);
         } catch (Exception $e) {
             Log::error($e->getMessage(), $e);
             return response()->json(['isSuccess' => false, 'errorMessage' => $e->getMessage()]);

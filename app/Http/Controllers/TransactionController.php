@@ -174,15 +174,22 @@ class TransactionController extends Controller
     public function getTransactions()
     {
         $user = JWTAuth::parseToken()->authenticate();
+        Log::info("user : " . $user);
+        // dd($user);
         $userId = $user->id;
+        Log::info("userid : " . $userId);
+        // dd($userId);
         $transactions = Transaction::with(['order' => function ($query) use ($userId) {
             $query->with('product')->where('user_id', $userId);
         }])->where('transaction_status', 'settlement')->orWhere('transaction_status', 'pending')->orderBy('updated_at', 'desc')->get();
         $orders = [];
+        Log::info("transactions : " . $transactions);
+        // return response()->json($transactions);
         foreach ($transactions as $transaction) {
 
             $totalItem = 0;
             $products = [];
+            Log::info("transaction : " . $transaction);
             foreach ($transaction['order']['product'] as $product) {
                 $productQty = $product['pivot']['quantity'];
                 $totalItem += $productQty;
