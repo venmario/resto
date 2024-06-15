@@ -33,4 +33,5 @@ console_command = 'php /var/www/html/artisan tinker'
   processes = ['app']
 
 [[vm]]
-  size = 'shared-cpu-1x'
+  size = 'shared-cpu-2x'
+  memory = "512mb"

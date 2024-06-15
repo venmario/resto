@@ -89,14 +89,14 @@ class CashierController extends Controller
         try {
             $orderDetails = [];
             Log::info("orderID : " . $id);
-            $order = Order::with('product')->where('id', $id)->get();
+            $order = Order::with('product')->find($id);
             Log::info("order : " . $order);
             foreach ($order['product'] as $od) {
                 $orderDetails[] = [
-                    'product' => $od['product']['name'],
-                    'quantity' => $od['product']['pivot']['quantity'],
-                    'price' => $od['product']['pivot']['quantity'],
-                    'note' => $od['product']['pivot']['note']
+                    'product' => $od['name'],
+                    'quantity' => $od['pivot']['quantity'],
+                    'price' => $od['pivot']['price'],
+                    'note' => $od['pivot']['note']
                 ];
             }
 
@@ -144,6 +144,7 @@ class CashierController extends Controller
 
                 $order = [
                     'order_id' => $transaction['order_id'],
+                    'status' => $transaction['order']['order_status'],
                     'fullname' => $transaction['order']['user']['firstname'] . " " . $transaction['order']['user']['lastname'],
                     'total_item' => $totalItem,
                     'grand_total' => $transaction['order']['grandtotal']
