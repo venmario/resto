@@ -146,6 +146,8 @@ class CashierController extends Controller
                     'order_id' => $transaction['order_id'],
                     'status' => $transaction['order']['order_status'],
                     'fullname' => $transaction['order']['user']['firstname'] . " " . $transaction['order']['user']['lastname'],
+                    'bank' => isset($transaction['bank']) ? $transaction['bank'] : null,
+                    'payment_type' => $transaction['payment_type'],
                     'total_item' => $totalItem,
                     'grand_total' => $transaction['order']['grandtotal']
                 ];
