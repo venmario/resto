@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fcm;
 use App\Models\Order;
 use App\Models\Transaction;
 use App\Models\User;
@@ -12,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Kreait\Firebase\Messaging\CloudMessage;
+use Kreait\Firebase\Messaging\Notification;
 use Midtrans\Config;
 use Midtrans\Snap;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -23,12 +26,14 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $messaging;
     public function __construct()
     {
         Config::$serverKey = env('SERVER_KEY');
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
+        $this->messaging = app('firebase.messaging');
     }
     public function CreateTransaction(Request $request)
     {
@@ -143,6 +148,24 @@ class TransactionController extends Controller
                     $newPoin = $poin + (int)($transaction->gross_amount / 1000);
                     $user->poin = $newPoin;
                     $user->save();
+
+                    $cashierFcmTokens = Fcm::withWhereHas('user', function ($query) {
+                        $query->where('is_cashier_active', true);
+                    })->get();
+
+                    $deviceTokens = [];
+                    foreach ($cashierFcmTokens as $fcmToken) {
+                        $deviceTokens[] = $fcmToken->fcm_token;
+                    }
+
+                    $title = "New Order!";
+                    $body = "Order " . $order->id . " has been create. Please serve it as soon as possible";
+                    $notification = Notification::create($title, $body);
+
+                    $data = ['order_id' => $order->id];
+                    $message = CloudMessage::new()->withNotification($notification)->withData($data);
+
+                    $this->messaging->sendMulticast($message, $deviceTokens);
                 }
                 DB::commit();
                 return;
