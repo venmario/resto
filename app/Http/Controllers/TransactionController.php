@@ -8,7 +8,6 @@ use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -136,7 +135,7 @@ class TransactionController extends Controller
                 if ($transactionData['transaction_status'] == "settlement") {
                     //ganti status order ke processing
                     $order = Order::find($transaction->order_id);
-                    $order->order_status = "processing";
+                    $order->order_status = "In Waiting List";
                     $order->save();
 
                     //ambil id user

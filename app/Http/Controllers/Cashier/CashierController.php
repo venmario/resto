@@ -84,6 +84,39 @@ class CashierController extends Controller
         }
     }
 
+    public function confirmOrder(Order $order, Request $request)
+    {
+        $estimation = $request->estimation;
+        Log::info("request : " . json_encode($request));
+        Log::info("estimation time : " . $estimation);
+        $fcmTokens = Fcm::where('user_id', $order->user_id)->get();
+
+        $deviceTokens = [];
+        foreach ($fcmTokens as $fcmToken) {
+            $deviceTokens[] = $fcmToken->fcm_token;
+        }
+        DB::beginTransaction();
+        try {
+            $transactionId = $order->transaction[0]->transaction_id;
+            $order->order_status = "Processing";
+            $order->estimation = Carbon::now()->addMinutes($estimation);
+            $order->save();
+            $title = "Order confiremd!";
+            $body = "Order " . $order->id . " has been processed!. We will serve your order as soon as possible";
+            $notification = Notification::create($title, $body);
+
+            $data = ['transaction_id' => $transactionId];
+            $message = CloudMessage::new()->withNotification($notification)->withData($data);
+
+            $this->messaging->sendMulticast($message, $deviceTokens);
+            DB::commit();
+            return response()->json(['isSuccess' => true]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(['isSuccess' => false, 'errorMessage' => $e->getMessage()]);
+        }
+    }
+
     public function getOrderById($id)
     {
         try {
@@ -120,7 +153,11 @@ class CashierController extends Controller
 
             $statuses = [
                 [
-                    'status' => "processing",
+                    'status' => "In Waiting List",
+                    'orders' => []
+                ],
+                [
+                    'status' => "Processing",
                     'orders' => []
                 ],
                 [
@@ -151,12 +188,14 @@ class CashierController extends Controller
                     'total_item' => $totalItem,
                     'grand_total' => $transaction['order']['grandtotal']
                 ];
-                if ($status == "processing") {
+                if ($status == "In Waiting List") {
                     $statuses[0]['orders'][] = $order;
-                } else if ($status == "Ready to Pick Up") {
+                } else if (strtolower($status) == "processing") {
                     $statuses[1]['orders'][] = $order;
-                } else if ($status == "Collected") {
+                } else if ($status == "Ready to Pick Up") {
                     $statuses[2]['orders'][] = $order;
+                } else if ($status == "Collected") {
+                    $statuses[3]['orders'][] = $order;
                 }
             }
 
