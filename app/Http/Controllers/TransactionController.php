@@ -265,6 +265,8 @@ class TransactionController extends Controller
         $date = Carbon::parse($order['updated_at']);
         $formattedDate = $date->isoFormat('dddd, D MMM YYYY');
         $formattedTime = $date->isoFormat("HH:mm");
+        $estimationDt = Carbon::parse($order['estimation']);
+        $estimationTime = $estimationDt->isoFormat("HH:mm");
         $order = [
             'transaction_id' => $transaction['transaction_id'],
             'issuer' => isset($transaction['issuer']) ? $transaction['issuer'] : null,
@@ -276,6 +278,7 @@ class TransactionController extends Controller
             'orderer_name' => $fullname,
             'status' => $order['order_status'],
             'grandtotal' => $order['grandtotal'],
+            'estimation' => $estimationTime,
             'updated_at_date' => $formattedDate,
             'updated_at_time' => $formattedTime,
             'details' => $products

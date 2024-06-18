@@ -35,3 +35,7 @@ console_command = 'php /var/www/html/artisan tinker'
 [[vm]]
   size = 'shared-cpu-2x'
   memory = "512mb"
+
+#[processes]
+#  app = ""
+#  cron = "cron -f"
