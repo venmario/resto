@@ -36,6 +36,6 @@ console_command = 'php /var/www/html/artisan tinker'
   size = 'shared-cpu-2x'
   memory = "512mb"
 
-#[processes]
-#  app = ""
-#  cron = "cron -f"
+[processes]
+  app = ""
+  cron = "cron -f"

@@ -40,7 +40,7 @@ class TransactionController extends Controller
         Log::info("nextId : " . $nextId);
         DB::beginTransaction();
         try {
-            $order = $request->except('order_detail');
+            $order = $request->except('order_detail', 'isBooking', 'time');
             $order['id'] = $nextId;
             $order['order_at'] = Carbon::now();
 
@@ -62,11 +62,16 @@ class TransactionController extends Controller
 
             $user = JWTAuth::authenticate($request->token);
 
+            $isBooking = $request->isBooking;
+            $time = isset($request->time) ? $request->time : null;
+
             $order['user_id'] = $user['id'];
             $params = [
                 'transaction_details' => [
                     'order_id' => $nextId,
                     'gross_amount' => $grandtotal,
+                    'isBooking' => $isBooking,
+                    'bookingTime' => $time,
                 ],
                 'customer_details' => [
                     'first_name' => $user['firstname'],
@@ -88,11 +93,16 @@ class TransactionController extends Controller
                     "shopeepay",
                     "other_qris",
                 ],
+                "custom_field1" => json_encode([
+                    'isBooking' => $isBooking,
+                    'bookingTime' => $time,
+                ])
             ];
 
             $snapToken = Snap::getSnapToken($params);
             Log::info("snap token : " . $snapToken);
             $order['snap_token'] = $snapToken;
+            Log::info("order : " . json_encode($order));
             $objOrder = Order::create($order);
             $objOrder->product()->attach($orderDetails);
             DB::commit();
@@ -104,6 +114,7 @@ class TransactionController extends Controller
             DB::rollBack();
             $request->flash();
             // dd($e->getTrace());
+            Log::error($e->getMessage());
             return response()->json([
                 'message' => $e->getMessage(),
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -134,8 +145,26 @@ class TransactionController extends Controller
                 $transaction->save();
                 if ($transactionData['transaction_status'] == "settlement") {
                     //ganti status order ke processing
+                    // Log::info("custom_field1 : " . json_encode($transactionData['custom_field1']));
                     $order = Order::find($transaction->order_id);
-                    $order->order_status = "In Waiting List";
+                    $customField1 = json_decode($transactionData['custom_field1'], true);
+                    Log::info("custom_field1 ", $customField1);
+                    $isBooking = $customField1['isBooking'];
+                    Log::info("is Booking : " . $isBooking);
+                    if ($isBooking) {
+                        $order->order_status = "Booking";
+                        $bookingTime = $customField1['bookingTime'];
+                        Log::info("booking time : " . $bookingTime);
+                        $time = explode(":", $bookingTime);
+                        Log::info("time : " . json_encode($time));
+                        $booking_time = Carbon::now();
+                        $booking_time->hour($time[0]);
+                        $booking_time->minute($time[1]);
+                        $booking_time->second(0);
+                        $order->booked_at = $booking_time;
+                    } else {
+                        $order->order_status = "In Waiting List";
+                    }
                     $order->save();
 
                     //ambil id user
