@@ -18,6 +18,8 @@ use Midtrans\Config;
 use Midtrans\Snap;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class TransactionController extends Controller
 {
     /**
@@ -186,14 +188,16 @@ class TransactionController extends Controller
                         $deviceTokens[] = $fcmToken->fcm_token;
                     }
 
-                    $title = "New Order!";
-                    $body = "Order " . $order->id . " has been create. Please serve it as soon as possible";
-                    $notification = Notification::create($title, $body);
+                    if (count($deviceTokens) > 0) {
+                        $title = "New Order!";
+                        $body = "Order " . $order->id . " has been create. Please serve it as soon as possible";
+                        $notification = Notification::create($title, $body);
 
-                    $data = ['order_id' => $order->id];
-                    $message = CloudMessage::new()->withNotification($notification)->withData($data);
+                        $data = ['order_id' => $order->id];
+                        $message = CloudMessage::new()->withNotification($notification)->withData($data);
 
-                    $this->messaging->sendMulticast($message, $deviceTokens);
+                        $this->messaging->sendMulticast($message, $deviceTokens);
+                    }
                 }
                 DB::commit();
                 return;

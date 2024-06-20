@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for restoapp on 2024-06-08T18:12:49+07:00
+# fly.toml app configuration file generated for restoapp on 2024-06-21T01:06:15+07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -33,8 +33,9 @@ console_command = 'php /var/www/html/artisan tinker'
   processes = ['app']
 
 [[vm]]
-  size = 'shared-cpu-2x'
-  memory = "512mb"
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 1
 
 [processes]
   app = ""

@@ -45,7 +45,7 @@ class BookOrderScheduler extends Command
 
         // Update the orders
         Order::whereIn('id', $ordersToUpdate->pluck('id'))
-            ->update(['status_order' => 'In Waiting List']);
+            ->update(['order_status' => 'In Waiting List']);
 
         if ($totalOrdersToUpdate > 0) {
             $cashierFcmTokens = Fcm::withWhereHas('user', function ($query) {
