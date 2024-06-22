@@ -101,7 +101,7 @@ class CashierController extends Controller
             $order->order_status = "Processing";
             $order->estimation = Carbon::now()->addMinutes($estimation);
             $order->save();
-            $title = "Order confiremd!";
+            $title = "Order confirmed!";
             $body = "Order " . $order->id . " has been processed!. We will serve your order as soon as possible";
             $notification = Notification::create($title, $body);
 
@@ -167,6 +167,10 @@ class CashierController extends Controller
                 [
                     "status" => "Collected",
                     'orders' => []
+                ],
+                [
+                    "status" => "Booking",
+                    "orders" => []
                 ]
             ];
 
@@ -196,6 +200,8 @@ class CashierController extends Controller
                     $statuses[2]['orders'][] = $order;
                 } else if ($status == "Collected") {
                     $statuses[3]['orders'][] = $order;
+                } else if ($status == "Booking") {
+                    $statuses[4]['orders'][] = $order;
                 }
             }
 

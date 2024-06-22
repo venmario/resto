@@ -300,6 +300,10 @@ class TransactionController extends Controller
         $formattedTime = $date->isoFormat("HH:mm");
         $estimationDt = Carbon::parse($order['estimation']);
         $estimationTime = $estimationDt->isoFormat("HH:mm");
+        if (isset($order->booked_at)) {
+            $bookedAt = Carbon::parse($order['booked_at']);
+            $formattedBookedAt = $bookedAt->isoFormat('dddd, D MMM YYYY HH:mm');
+        }
         $order = [
             'transaction_id' => $transaction['transaction_id'],
             'issuer' => isset($transaction['issuer']) ? $transaction['issuer'] : null,
@@ -316,6 +320,9 @@ class TransactionController extends Controller
             'updated_at_time' => $formattedTime,
             'details' => $products
         ];
+        if (isset($formattedBookedAt)) {
+            $order['booked_at'] = $formattedBookedAt;
+        }
         return response()->json($order);
     }
 }
