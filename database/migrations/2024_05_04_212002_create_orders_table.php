@@ -20,8 +20,8 @@ class CreateOrdersTable extends Migration
             $table->string('order_status')->default('waiting payment');
             $table->dateTime('booked_at')->nullable();
             $table->string('snap_token');
-            $table->integer('grandtotal');
-            $table->integer('grandtotalpoin');
+            $table->integer('grandtotal')->nullable();
+            $table->integer('grandtotalpoin')->nullable();
             $table->dateTime('estimation')->nullable();
             // $table->enum('type', ['dine in', 'pick up']);
             $table->foreignId('user_id')->constrained();

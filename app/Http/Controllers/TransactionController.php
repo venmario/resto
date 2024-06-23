@@ -47,20 +47,15 @@ class TransactionController extends Controller
             $order['order_at'] = Carbon::now();
 
             $grandtotal = 0;
-            $grandtotalpoin = 0;
             $orderDetails = $request->input('order_detail');
             Log::info("od", $orderDetails);
 
             foreach ($orderDetails as &$od) {
                 $od['order_id'] = $nextId;
-                $totalPrice = $od['price'] * $od['quantity'] * 1000;
-                $totalPoin = $od['poin'] * $od['quantity'];
+                $totalPrice = $od['price'] * $od['quantity'];
                 $grandtotal += $totalPrice;
-                $grandtotalpoin += $totalPoin;
-                $od['price'] *= 1000;
             }
             $order['grandtotal'] = $grandtotal;
-            $order['grandtotalpoin'] = $grandtotalpoin;
 
             $user = JWTAuth::authenticate($request->token);
 

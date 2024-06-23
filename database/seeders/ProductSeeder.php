@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 20,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 20,
-                'price' => 30,
+                'price' => 30000,
                 'poin' => 30
             ],
             [
@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 20,
-                'price' => 30,
+                'price' => 30000,
                 'poin' => 30
             ],
             [
@@ -49,7 +49,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 20,
-                'price' => 35,
+                'price' => 35000,
                 'poin' => 35
             ],
             [
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 21,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -67,7 +67,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 21,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -76,7 +76,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 21,
-                'price' => 30,
+                'price' => 30000,
                 'poin' => 30
             ],
             [
@@ -85,7 +85,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 19,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -94,7 +94,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 19,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -103,7 +103,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 19,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -112,7 +112,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 19,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -121,7 +121,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 16,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -130,7 +130,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 16,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -139,7 +139,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 16,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -148,7 +148,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 16,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -157,7 +157,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 16,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -166,7 +166,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 16,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -175,7 +175,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 17,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -184,7 +184,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 17,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -193,7 +193,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 17,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -202,7 +202,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 18,
-                'price' => 45,
+                'price' => 45000,
                 'poin' => 45
             ],
             [
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 18,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -220,7 +220,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 18,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -229,7 +229,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 18,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -238,7 +238,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 18,
-                'price' => 75,
+                'price' => 75000,
                 'poin' => 75
             ],
             [
@@ -247,7 +247,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 65,
+                'price' => 65000,
                 'poin' => 65
             ],
             [
@@ -256,7 +256,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 95,
+                'price' => 95000,
                 'poin' => 95
             ],
             [
@@ -265,7 +265,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 70,
+                'price' => 70000,
                 'poin' => 70
             ],
             [
@@ -274,7 +274,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 98,
+                'price' => 98000,
                 'poin' => 98
             ],
             [
@@ -283,7 +283,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 98,
+                'price' => 98000,
                 'poin' => 98
             ],
             [
@@ -292,7 +292,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 85,
+                'price' => 85000,
                 'poin' => 85
             ],
             [
@@ -301,7 +301,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 95,
+                'price' => 95000,
                 'poin' => 95
             ],
             [
@@ -310,7 +310,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 85,
+                'price' => 85000,
                 'poin' => 85
             ],
             [
@@ -319,7 +319,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 14,
-                'price' => 105,
+                'price' => 105000,
                 'poin' => 105
             ],
             [
@@ -328,7 +328,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 15,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -337,7 +337,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 15,
-                'price' => 98,
+                'price' => 98000,
                 'poin' => 98
             ],
             [
@@ -346,7 +346,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 12,
-                'price' => 155,
+                'price' => 155000,
                 'poin' => 155
             ],
             [
@@ -355,7 +355,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 12,
-                'price' => 175,
+                'price' => 175000,
                 'poin' => 175
             ],
             [
@@ -364,7 +364,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 12,
-                'price' => 160,
+                'price' => 160000,
                 'poin' => 160
             ],
             [
@@ -373,7 +373,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 12,
-                'price' => 185,
+                'price' => 185000,
                 'poin' => 185
             ],
             [
@@ -382,7 +382,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 12,
-                'price' => 210,
+                'price' => 210000,
                 'poin' => 210
             ],
             [
@@ -391,7 +391,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 13,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -400,7 +400,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 13,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -409,7 +409,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 13,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -418,7 +418,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 13,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -427,7 +427,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 13,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -436,7 +436,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 11,
-                'price' => 135,
+                'price' => 135000,
                 'poin' => 135
             ],
             [
@@ -445,7 +445,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 11,
-                'price' => 120,
+                'price' => 120000,
                 'poin' => 120
             ],
             [
@@ -454,7 +454,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 11,
-                'price' => 95,
+                'price' => 95000,
                 'poin' => 95
             ],
             [
@@ -463,7 +463,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 10,
-                'price' => 40,
+                'price' => 40000,
                 'poin' => 40
             ],
             [
@@ -472,7 +472,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 10,
-                'price' => 40,
+                'price' => 40000,
                 'poin' => 40
             ],
             [
@@ -481,7 +481,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 10,
-                'price' => 45,
+                'price' => 45000,
                 'poin' => 45
             ],
             [
@@ -490,7 +490,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 10,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -499,7 +499,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 10,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -508,7 +508,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 10,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -517,7 +517,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 8,
-                'price' => 35,
+                'price' => 35000,
                 'poin' => 35
             ],
             [
@@ -526,7 +526,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 8,
-                'price' => 45,
+                'price' => 45000,
                 'poin' => 45
             ],
             [
@@ -535,7 +535,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 8,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -544,7 +544,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 8,
-                'price' => 55,
+                'price' => 55000,
                 'poin' => 55
             ],
             [
@@ -553,7 +553,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 8,
-                'price' => 50,
+                'price' => 50000,
                 'poin' => 50
             ],
             [
@@ -562,7 +562,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 9,
-                'price' => 45,
+                'price' => 45000,
                 'poin' => 45
             ],
             [
@@ -571,7 +571,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 9,
-                'price' => 40,
+                'price' => 40000,
                 'poin' => 40
             ],
             [
@@ -580,7 +580,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 9,
-                'price' => 40,
+                'price' => 40000,
                 'poin' => 40
             ],
             [
@@ -589,7 +589,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 9,
-                'price' => 60,
+                'price' => 60000,
                 'poin' => 60
             ],
             [
@@ -598,7 +598,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 9,
-                'price' => 65,
+                'price' => 65000,
                 'poin' => 65
             ],
             [
@@ -607,7 +607,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -616,7 +616,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 20,
+                'price' => 20000,
                 'poin' => 20
             ],
             [
@@ -625,7 +625,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -634,7 +634,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -643,7 +643,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -652,7 +652,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -661,7 +661,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 30,
+                'price' => 30000,
                 'poin' => 30
             ],
             [
@@ -670,7 +670,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 30,
+                'price' => 30000,
                 'poin' => 30
             ],
             [
@@ -679,7 +679,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 34,
+                'price' => 34000,
                 'poin' => 34
             ],
             [
@@ -688,7 +688,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 6,
-                'price' => 38,
+                'price' => 38000,
                 'poin' => 38
             ],
             [
@@ -697,7 +697,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 7,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -706,7 +706,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 7,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -715,7 +715,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 7,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -724,7 +724,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 7,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -733,7 +733,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 5,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -742,7 +742,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 5,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -751,7 +751,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 5,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -760,7 +760,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 5,
-                'price' => 32,
+                'price' => 32000,
                 'poin' => 32
             ],
             [
@@ -769,7 +769,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 5,
-                'price' => 32,
+                'price' => 32000,
                 'poin' => 32
             ],
             [
@@ -778,7 +778,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 5,
-                'price' => 32,
+                'price' => 32000,
                 'poin' => 32
             ],
             [
@@ -787,7 +787,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 32,
+                'price' => 32000,
                 'poin' => 32
             ],
             [
@@ -796,7 +796,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 32,
+                'price' => 32000,
                 'poin' => 32
             ],
             [
@@ -805,7 +805,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -814,7 +814,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -823,7 +823,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -832,7 +832,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 32,
+                'price' => 32000,
                 'poin' => 32
             ],
             [
@@ -841,7 +841,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 32,
+                'price' => 32000,
                 'poin' => 32
             ],
             [
@@ -850,7 +850,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 28,
+                'price' => 28000,
                 'poin' => 28
             ],
             [
@@ -859,7 +859,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -868,7 +868,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -877,7 +877,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -886,7 +886,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 25,
+                'price' => 25000,
                 'poin' => 25
             ],
             [
@@ -895,7 +895,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 10,
+                'price' => 10000,
                 'poin' => 10
             ],
             [
@@ -904,7 +904,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 10,
+                'price' => 10000,
                 'poin' => 10
             ],
             [
@@ -913,7 +913,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 4,
-                'price' => 10,
+                'price' => 10000,
                 'poin' => 10
             ],
             [
@@ -922,7 +922,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 3,
-                'price' => 35,
+                'price' => 35000,
                 'poin' => 35
             ],
             [
@@ -931,7 +931,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 3,
-                'price' => 35,
+                'price' => 35000,
                 'poin' => 35
             ],
             [
@@ -940,7 +940,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 3,
-                'price' => 30,
+                'price' => 30000,
                 'poin' => 30
             ],
             [
@@ -949,7 +949,7 @@ class ProductSeeder extends Seeder
                 'image' => 'https://plus.unsplash.com/premium_photo-1666978195894-b2e3a3f14d9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 'available' => 1,
                 'category_id' => 3,
-                'price' => 30,
+                'price' => 30000,
                 'poin' => 30
             ],
         ];
