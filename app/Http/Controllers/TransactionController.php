@@ -17,8 +17,7 @@ use Kreait\Firebase\Messaging\Notification;
 use Midtrans\Config;
 use Midtrans\Snap;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
@@ -36,6 +35,81 @@ class TransactionController extends Controller
         Config::$is3ds = true;
         $this->messaging = app('firebase.messaging');
     }
+    public function createRedeemPointTransaction(Request $request)
+    {
+        $nextId = Order::generateOrderId();
+        Log::info("nextId : " . $nextId);
+        DB::beginTransaction();
+        try {
+            $order = $request->except('order_detail');
+            $order['id'] = $nextId;
+            $order['order_at'] = Carbon::now();
+
+            $grandtotalpoint = 0;
+            $orderDetails = $request->input('order_detail');
+            Log::info("od", $orderDetails);
+
+            foreach ($orderDetails as &$od) {
+                $od['order_id'] = $nextId;
+                $totalPoint = $od['poin'] * $od['quantity'];
+                $grandtotalpoint += $totalPoint;
+            }
+            $order['grandtotalpoin'] = $grandtotalpoint;
+
+            $user = JWTAuth::authenticate($request->token);
+            $poin = $user->poin;
+            $newPoin = $poin - $grandtotalpoint;
+            $user->poin = $newPoin;
+            $user->save();
+            $order['user_id'] = $user['id'];
+            $order['order_status'] = "In Waiting List";
+
+            Log::info("order : " . json_encode($order));
+            $objOrder = Order::create($order);
+            $objOrder->product()->attach($orderDetails);
+
+            $transaction = new Transaction();
+            $transaction->transaction_id = Str::uuid();
+            $transaction->order_id = $order['id'];
+            $transaction->gross_amount = 0;
+            $transaction->transaction_time = $order['order_at'];
+            $transaction->transaction_status = "settlement";
+            $transaction->status_message = "redeem point transaction";
+            $transaction->settlement_time = Carbon::now();
+            $transaction->payment_type = "Redeem Point";
+            Log::info("transaction : " . json_encode($transaction));
+            $transaction->save();
+
+            $cashierFcmTokens = Fcm::withWhereHas('user', function ($query) {
+                $query->where('is_cashier_active', true);
+            })->get();
+
+            $deviceTokens = [];
+            foreach ($cashierFcmTokens as $fcmToken) {
+                $deviceTokens[] = $fcmToken->fcm_token;
+            }
+
+            if (count($deviceTokens) > 0) {
+                $title = "New Order!";
+                $body = "Order " .  $order['id'] . " has been create. Please serve it as soon as possible";
+                $notification = Notification::create($title, $body);
+
+                $data = ['order_id' =>  $order['id']];
+                $message = CloudMessage::new()->withNotification($notification)->withData($data);
+
+                $this->messaging->sendMulticast($message, $deviceTokens);
+            }
+
+            DB::commit();
+            return response()->json(['isSuccess' => true, "errorMessage" => null, "data" => $transaction['transaction_id']]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            $request->flash();
+            // dd($e->getTrace());
+            Log::error($e->getMessage());
+            return response()->json(['isSuccess' => false, "errorMessage" => $e->getMessage(), "data" => null]);
+        }
+    }
     public function CreateTransaction(Request $request)
     {
         $nextId = Order::generateOrderId();
@@ -52,6 +126,7 @@ class TransactionController extends Controller
 
             foreach ($orderDetails as &$od) {
                 $od['order_id'] = $nextId;
+                $od['poin'] = 0;
                 $totalPrice = $od['price'] * $od['quantity'];
                 $grandtotal += $totalPrice;
             }

@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('finished_at')->nullable();
             $table->string('order_status')->default('waiting payment');
             $table->dateTime('booked_at')->nullable();
-            $table->string('snap_token');
+            $table->string('snap_token')->nullable();
             $table->integer('grandtotal')->nullable();
             $table->integer('grandtotalpoin')->nullable();
             $table->dateTime('estimation')->nullable();

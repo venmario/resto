@@ -38,6 +38,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post('/createOrder', [OrderController::class, 'createOrder']);
     });
     Route::group(['prefix' => 'transaction'], function () {
+        Route::post('/redeemPoint', [TransactionController::class, 'createRedeemPointTransaction']);
         Route::post('/createTransaction', [TransactionController::class, 'createTransaction']);
         Route::get('/getTransactions', [TransactionController::class, 'getTransactions']);
         Route::get('/getTransactionById/{transactionId}', [TransactionController::class, 'getTransactionById']);
