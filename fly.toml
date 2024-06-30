@@ -20,8 +20,8 @@ console_command = 'php /var/www/html/artisan tinker'
   SESSION_DRIVER = 'cookie'
   SESSION_SECURE_COOKIE = 'true'
   DB_CONNECTION = "pgsql"
-  DB_HOST = "restoapp-db.internal"
-  DB_DATABASE= "postgres" 
+  DB_HOST = "bcr-db.internal"
+  DB_DATABASE= "restoapp" 
   DB_PORT = 5432
 
 [http_service]

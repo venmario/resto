@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Cashier\CashierController;
+use App\Http\Controllers\Cashier\IncomeController;
+use App\Http\Controllers\Cashier\ProductManagementController;
+use App\Http\Controllers\Cashier\StoreController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
@@ -56,6 +59,23 @@ Route::group(['prefix' => 'cashier'], function () {
         Route::get('/orderReady/{order}', [CashierController::class, 'readyToPickUpOrder']);
         Route::get('/collectOrder/{order}', [CashierController::class, 'finishOrder']);
         Route::post('/logout', [CashierController::class, 'logout']);
+
+        Route::group(['prefix' => 'product'], function () {
+            Route::get('getCategories', [ProductManagementController::class, 'getCategories']);
+            Route::get('getProduct/{id}', [ProductManagementController::class, 'getProduct']);
+            Route::get('getAllProduct', [ProductManagementController::class, 'getAllProduct']);
+            Route::post('createProduct', [ProductManagementController::class, 'createProduct']);
+            Route::put('updateProduct/{id}', [ProductManagementController::class, 'updateProduct']);
+            Route::delete('deleteProduct/{id}', [ProductManagementController::class, 'deleteProduct']);
+        });
+
+        Route::group(['prefix' => 'income'], function () {
+            Route::get('getIncome', [IncomeController::class, 'getIncome']);
+        });
+        Route::group(['prefix' => 'store'], function () {
+            Route::get('getOpenCloseHour', [StoreController::class, 'getOpenCloseHour']);
+            Route::post('setOpenCloseHour/{store}', [StoreController::class, 'setOpenCloseHour']);
+        });
     });
     Route::post('/login', [CashierController::class, 'login']);
 });
