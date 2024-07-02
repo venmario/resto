@@ -35,6 +35,12 @@ Route::group(['prefix' => 'product'], function () {
     Route::get('/getProductByCategory', [ProductController::class, 'getProductByCategory']);
     Route::get('/getProductById/{product}', [ProductController::class, 'getProductById']);
 });
+
+Route::group(['prefix' => 'store'], function () {
+    Route::get('getOpenCloseHour', [StoreController::class, 'getOpenCloseHour']);
+    Route::post('setOpenCloseHour/{id}', [StoreController::class, 'setOpenCloseHour']);
+});
+
 Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::group(['prefix' => 'order'], function () {
@@ -71,10 +77,6 @@ Route::group(['prefix' => 'cashier'], function () {
 
         Route::group(['prefix' => 'income'], function () {
             Route::get('getIncome', [IncomeController::class, 'getIncome']);
-        });
-        Route::group(['prefix' => 'store'], function () {
-            Route::get('getOpenCloseHour', [StoreController::class, 'getOpenCloseHour']);
-            Route::post('setOpenCloseHour/{store}', [StoreController::class, 'setOpenCloseHour']);
         });
     });
     Route::post('/login', [CashierController::class, 'login']);

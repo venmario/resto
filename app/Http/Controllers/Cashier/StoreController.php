@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Store;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class StoreController extends Controller
 {
@@ -22,14 +23,16 @@ class StoreController extends Controller
         }
     }
 
-    public function setOpenCloseHour(Request $request, Store $store)
+    public function setOpenCloseHour($id, Request $request)
     {
         $open = $request->open;
         $close = $request->close;
 
+        $store = Store::find($id);
+        Log::info("store : " . $store);
         try {
             if ($store == null) {
-                $store->create(['open' => $open, 'close' => $close]);
+                Store::create(['open' => $open, 'close' => $close]);
             } else {
                 $store->update(['open' => $open, 'close' => $close]);
             }

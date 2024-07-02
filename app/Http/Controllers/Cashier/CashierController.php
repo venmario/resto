@@ -40,14 +40,17 @@ class CashierController extends Controller
             $order->order_status = "Collected";
             $order->finished_at = Carbon::now();
             $order->save();
-            $title = "Finished!";
-            $body = "Order " . $order->id . " has picked up. Please enjoy the meal!";
-            $notification = Notification::create($title, $body);
 
-            $data = ['transaction_id' => $transactionId];
-            $message = CloudMessage::new()->withNotification($notification)->withData($data);
+            if (count($deviceTokens) > 0) {
+                $title = "Finished!";
+                $body = "Order " . $order->id . " has picked up. Please enjoy the meal!";
+                $notification = Notification::create($title, $body);
 
-            $this->messaging->sendMulticast($message, $deviceTokens);
+                $data = ['transaction_id' => $transactionId];
+                $message = CloudMessage::new()->withNotification($notification)->withData($data);
+
+                $this->messaging->sendMulticast($message, $deviceTokens);
+            }
             DB::commit();
             return response()->json(['isSuccess' => true]);
         } catch (Exception $e) {
@@ -68,14 +71,16 @@ class CashierController extends Controller
             $transactionId = $order->transaction[0]->transaction_id;
             $order->order_status = "Ready to Pick Up";
             $order->save();
-            $title = "Ready to pick up!";
-            $body = "Order " . $order->id . " is ready to pick up!. Please take your order as soon as possible";
-            $notification = Notification::create($title, $body);
+            if (count($deviceTokens) > 0) {
+                $title = "Ready to pick up!";
+                $body = "Order " . $order->id . " is ready to pick up!. Please take your order as soon as possible";
+                $notification = Notification::create($title, $body);
 
-            $data = ['transaction_id' => $transactionId];
-            $message = CloudMessage::new()->withNotification($notification)->withData($data);
+                $data = ['transaction_id' => $transactionId];
+                $message = CloudMessage::new()->withNotification($notification)->withData($data);
 
-            $this->messaging->sendMulticast($message, $deviceTokens);
+                $this->messaging->sendMulticast($message, $deviceTokens);
+            }
             DB::commit();
             return response()->json(['isSuccess' => true]);
         } catch (Exception $e) {
@@ -101,14 +106,16 @@ class CashierController extends Controller
             $order->order_status = "Processing";
             $order->estimation = Carbon::now()->addMinutes($estimation);
             $order->save();
-            $title = "Order confirmed!";
-            $body = "Order " . $order->id . " has been processed!. We will serve your order as soon as possible";
-            $notification = Notification::create($title, $body);
+            if (count($deviceTokens) > 0) {
+                $title = "Order confirmed!";
+                $body = "Order " . $order->id . " has been processed!. We will serve your order as soon as possible";
+                $notification = Notification::create($title, $body);
 
-            $data = ['transaction_id' => $transactionId];
-            $message = CloudMessage::new()->withNotification($notification)->withData($data);
+                $data = ['transaction_id' => $transactionId];
+                $message = CloudMessage::new()->withNotification($notification)->withData($data);
 
-            $this->messaging->sendMulticast($message, $deviceTokens);
+                $this->messaging->sendMulticast($message, $deviceTokens);
+            }
             DB::commit();
             return response()->json(['isSuccess' => true]);
         } catch (Exception $e) {

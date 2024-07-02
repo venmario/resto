@@ -304,9 +304,15 @@ class TransactionController extends Controller
         $userId = $user->id;
         Log::info("userid : " . $userId);
         // dd($userId);
-        $transactions = Transaction::withWhereHas('order', function ($query) use ($userId) {
-            $query->with('product')->where('user_id', $userId);
-        })->where('transaction_status', 'settlement')->orWhere('transaction_status', 'pending')->orderBy('updated_at', 'desc')->get();
+        $transactions = Transaction::whereHas('order', function ($query) use ($userId) {
+            $query->where('user_id', $userId)->with('product');
+        })
+            ->where(function ($query) {
+                $query->where('transaction_status', 'settlement')
+                    ->orWhere('transaction_status', 'pending');
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
         $orders = [];
         Log::info("transactions : " . $transactions);
         // return response()->json($transactions);
