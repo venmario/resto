@@ -34,6 +34,12 @@ Route::post('/refresh',  [AuthenticationController::class, 'refresh']);
 Route::group(['prefix' => 'product'], function () {
     Route::get('/getProductByCategory', [ProductController::class, 'getProductByCategory']);
     Route::get('/getProductById/{product}', [ProductController::class, 'getProductById']);
+    Route::get('/addCategory', [ProductController::class, 'addCategory']);
+    Route::get('/updateCategory', [ProductController::class, 'updateCategory']);
+    Route::get('/deleteCategory', [ProductController::class, 'deleteCategory']);
+    Route::get('/addProduct', [ProductController::class, 'addProduct']);
+    Route::get('/updateProduct', [ProductController::class, 'updateProduct']);
+    Route::get('/deleteProduct', [ProductController::class, 'deleteProduct']);
 });
 
 Route::group(['prefix' => 'store'], function () {
