@@ -50,9 +50,12 @@ class BookOrderScheduler extends Command
 
         if ($now->between($parsedTimeOpen, $parsedTimeClose)) {
             DB::table('products')->update(['available' => true]);
+            $store->is_open = true;
         } else {
             DB::table('products')->update(['available' => false]);
+            $store->is_open = false;
         }
+        $store->save();
 
         $ordersToUpdate = Order::where('order_status', 'Booking')
             ->where('booked_at', '<=', $now)
