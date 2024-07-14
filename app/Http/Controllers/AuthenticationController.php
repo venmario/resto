@@ -200,6 +200,55 @@ class AuthenticationController extends Controller
         }
     }
 
+    public function update_password(Request $request)
+    {
+        try {
+            $data = $request->except('username');
+            $validator = Validator::make($data, [
+                'currentPassword' => 'required|string|min:6|max:50',
+                'newPassword' => 'required|string|min:6|max:50'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'successMessage' => null,
+                    'errorMessage' => $validator->getMessageBag(),
+                    'code' => Response::HTTP_BAD_REQUEST
+                ]);
+            }
+
+            $credentials = $request->only('username');
+            $credentials['password'] = $data['currentPassword'];
+            $token = JWTAuth::attempt($credentials);
+            if (!$token) {
+                return response()->json([
+                    'success' => false,
+                    'successMessage' => null,
+                    'errorMessage' => 'Incorrect password',
+                    'code' => Response::HTTP_NOT_FOUND
+                ]);
+            }
+
+
+            $user = User::where('username', $request->username)->firstOrFail();
+            $user->update(['password' => bcrypt($data['newPassword'])]);
+            return response()->json([
+                'success' => true,
+                'successMessage' => 'Success update password',
+                'errorMessage' => null,
+                'code' => 202
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'successMessage' => null,
+                'errorMessage' => $e->getMessage(),
+                'code' => 500
+            ]);
+        }
+    }
+
     public function protected()
     {
         return response()->json(['test' => 'teset'], Response::HTTP_OK);
