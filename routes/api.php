@@ -54,6 +54,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     });
     Route::post('/logout', [AuthenticationController::class, 'logout']);
     Route::post('/getUser', [AuthenticationController::class, 'get_user']);
+    Route::post('/updateUser', [AuthenticationController::class, 'update_user']);
     Route::get('/protected', [AuthenticationController::class, 'protected']);
 });
 

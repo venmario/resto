@@ -134,13 +134,70 @@ class AuthenticationController extends Controller
     }
     public function get_user(Request $request)
     {
-        //     $this->validate($request, [
-        //         'token' => 'required'
-        //     ]);
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
 
-        // $user = JWTAuth::authenticate($request->token);
-        $user = JWTAuth::parseToken()->authenticate();
-        return response()->json(['user' => $user]);
+            return response()->json([
+                'success' => true,
+                'successMessage' => 'Success retrieve user data',
+                'errorMessage' => null,
+                'user' => User::find($user->id),
+                'code' => 200
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => true,
+                'successMessage' => null,
+                'errorMessage' => $e->getMessage(),
+                'user' => null,
+                'code' => 500
+            ]);
+        }
+    }
+
+    public function update_user(Request $request)
+    {
+        try {
+            $data = $request->except('username', 'firstname', 'lastname');
+            $validation = [];
+            if (isset($data['phonenumber'])) {
+                $validation['phonenumber'] = 'required|string|unique:users';
+            }
+            if (isset($data['email'])) {
+                $validation['email'] = 'required|email|unique:users';
+            }
+            if (isset($data))
+                $validator = Validator::make($data, $validation);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'successMessage' => null,
+                    'errorMessage' => $validator->getMessageBag(),
+                    'user' => null,
+                    'code' => Response::HTTP_BAD_REQUEST
+                ]);
+            }
+
+            $user = User::where('username', $request->username)->firstOrFail();
+            $userData = $request->except("username");
+            $user->update($userData);
+            return response()->json([
+                'success' => true,
+                'successMessage' => 'Success update user data',
+                'errorMessage' => null,
+                'user' => $user,
+                'code' => 202
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'successMessage' => null,
+                'errorMessage' => $e->getMessage(),
+                'user' => null,
+                'code' => 500
+            ]);
+        }
     }
 
     public function protected()
