@@ -13,7 +13,9 @@ class ProductController extends Controller
     public function getProductByCategory()
     {
         Log::info("get products");
-        $categories = Category::with('product')->where('name', '!=', 'Makanan')->where('name', '!=', 'Minuman')->orderBy('sequence')->get();
+        $categories = Category::with('product')->where('name', '!=', 'Makanan')->where('name', '!=', 'Minuman')->whereHas('product', function ($query) {
+            $query->whereNull('deleted_at');
+        })->orderBy('sequence')->get();
         return response()->json($categories, Response::HTTP_OK);
     }
 
