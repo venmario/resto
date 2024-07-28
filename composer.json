@@ -10,7 +10,7 @@
     "require": {
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.8",
         "kreait/laravel-firebase": "^5.8",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.0",

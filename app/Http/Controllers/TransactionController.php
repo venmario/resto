@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -400,5 +401,28 @@ class TransactionController extends Controller
             $order['booked_at'] = $formattedBookedAt;
         }
         return response()->json($order);
+    }
+
+    public function cancelTransaction($orderId)
+    {
+        $client = new Client();
+        try {
+            $response = $client->request('POST', "https://api.sandbox.midtrans.com/v2/$orderId/cancel", [
+                'headers' => [
+                    'accept' => 'application/json',
+                ],
+            ]);
+            $body = $response->getBody();
+            $status_code = $body['status_code'];
+            if ($status_code ==  200) {
+                $order = Order::findOrFail($orderId);
+                $order->order_status = 'canceled';
+                $order->save();
+                return response()->json(['isSuccess' => true, 'errorMessage' => null, 'data' => $body]);
+            }
+            return response()->json(['isSuccess' => false, 'errorMessage' => $body['status_message'], 'data' => null]);
+        } catch (Exception $e) {
+            return response()->json(['isSuccess' => false, 'errorMessage' => $e->getMessage(), 'data' => null]);
+        }
     }
 }
