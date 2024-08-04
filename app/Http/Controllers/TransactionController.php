@@ -117,7 +117,7 @@ class TransactionController extends Controller
         Log::info("nextId : " . $nextId);
         DB::beginTransaction();
         try {
-            $order = $request->except('order_detail', 'isBooking', 'time');
+            $order = $request->except('order_detail', 'isBooking', 'dateTime');
             $order['id'] = $nextId;
             $order['order_at'] = Carbon::now();
 
@@ -136,15 +136,13 @@ class TransactionController extends Controller
             $user = JWTAuth::authenticate($request->token);
 
             $isBooking = $request->isBooking;
-            $time = isset($request->time) ? $request->time : null;
+            $dateTime = isset($request->dateTime) ? $request->dateTime : null;
 
             $order['user_id'] = $user['id'];
             $params = [
                 'transaction_details' => [
                     'order_id' => $nextId,
                     'gross_amount' => $grandtotal,
-                    'isBooking' => $isBooking,
-                    'bookingTime' => $time,
                 ],
                 'customer_details' => [
                     'first_name' => $user['firstname'],
@@ -168,7 +166,7 @@ class TransactionController extends Controller
                 ],
                 "custom_field1" => json_encode([
                     'isBooking' => $isBooking,
-                    'bookingTime' => $time,
+                    'bookingTime' => $dateTime,
                 ])
             ];
 
@@ -228,11 +226,7 @@ class TransactionController extends Controller
                         $order->order_status = "Booking";
                         $bookingTime = $customField1['bookingTime'];
                         Log::info("booking time : " . $bookingTime);
-                        $time = explode(":", $bookingTime);
-                        Log::info("time : " . json_encode($time));
-                        $booking_time = Carbon::now();
-                        $booking_time->hour($time[0]);
-                        $booking_time->minute($time[1]);
+                        $booking_time =  Carbon::createFromFormat('Y-m-d H:i', $bookingTime);
                         $booking_time->second(0);
                         $order->booked_at = $booking_time;
                     } else {
@@ -269,6 +263,10 @@ class TransactionController extends Controller
 
                         $this->messaging->sendMulticast($message, $deviceTokens);
                     }
+                } else if ($transactionData['transaction_status'] == "expire") {
+                    $order = Order::find($transaction->order_id);
+                    $order->order_status = 'expire';
+                    $order->save();
                 }
                 DB::commit();
                 return;
@@ -310,7 +308,8 @@ class TransactionController extends Controller
         })
             ->where(function ($query) {
                 $query->where('transaction_status', 'settlement')
-                    ->orWhere('transaction_status', 'pending');
+                    ->orWhere('transaction_status', 'pending')
+                    ->orWhere('transaction_status', 'cancel');
             })
             ->orderBy('updated_at', 'desc')
             ->get();
@@ -395,7 +394,9 @@ class TransactionController extends Controller
             'estimation' => $estimationTime,
             'updated_at_date' => $formattedDate,
             'updated_at_time' => $formattedTime,
-            'details' => $products
+            'details' => $products,
+            'cancel_reason' => isset($order['cancel_reason']) ? $order['cancel_reason'] : null,
+            'refund_reason' => isset($order['refund_reason']) ? $order['refund_reason'] : null,
         ];
         if (isset($formattedBookedAt)) {
             $order['booked_at'] = $formattedBookedAt;
@@ -403,25 +404,32 @@ class TransactionController extends Controller
         return response()->json($order);
     }
 
-    public function cancelTransaction($orderId)
+    public function cancelTransaction($orderId, Request $request)
     {
+        Log::info("order id : " . $orderId);
         $client = new Client();
         try {
             $response = $client->request('POST', "https://api.sandbox.midtrans.com/v2/$orderId/cancel", [
                 'headers' => [
                     'accept' => 'application/json',
+                    'authorization' => 'Basic U0ItTWlkLXNlcnZlci1mcDZCRjJUT2VUWjhnOW8wcEdhTW5HdE46',
                 ],
             ]);
-            $body = $response->getBody();
+            $body = json_decode($response->getBody(), true);
             $status_code = $body['status_code'];
+            $status_message = $body['status_message'];
+            Log::info("status_code : " . $status_code);
+            Log::info("status_message : " . $status_message);
             if ($status_code ==  200) {
                 $order = Order::findOrFail($orderId);
-                $order->order_status = 'canceled';
+                $order->order_status = 'cancel';
+                $order->cancel_reason = $request->reason;
                 $order->save();
                 return response()->json(['isSuccess' => true, 'errorMessage' => null, 'data' => $body]);
             }
-            return response()->json(['isSuccess' => false, 'errorMessage' => $body['status_message'], 'data' => null]);
+            return response()->json(['isSuccess' => false, 'errorMessage' => $status_message, 'data' => null]);
         } catch (Exception $e) {
+            Log::error("error : " . $e->getMessage());
             return response()->json(['isSuccess' => false, 'errorMessage' => $e->getMessage(), 'data' => null]);
         }
     }

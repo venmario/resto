@@ -49,6 +49,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::group(['prefix' => 'transaction'], function () {
         Route::post('/redeemPoint', [TransactionController::class, 'createRedeemPointTransaction']);
         Route::post('/createTransaction', [TransactionController::class, 'createTransaction']);
+        Route::post('/cancelTransaction/{orderId}', [TransactionController::class, 'cancelTransaction']);
         Route::get('/getTransactions', [TransactionController::class, 'getTransactions']);
         Route::get('/getTransactionById/{transactionId}', [TransactionController::class, 'getTransactionById']);
     });
@@ -66,6 +67,7 @@ Route::group(['prefix' => 'cashier'], function () {
         Route::post('/confirmOrder/{order}', [CashierController::class, 'confirmOrder']);
         Route::get('/orderReady/{order}', [CashierController::class, 'readyToPickUpOrder']);
         Route::get('/collectOrder/{order}', [CashierController::class, 'finishOrder']);
+        Route::post('/refundOrder/{order}', [CashierController::class, 'refundOrder']);
         Route::post('/logout', [CashierController::class, 'logout']);
 
         Route::group(['prefix' => 'product'], function () {

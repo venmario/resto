@@ -26,6 +26,68 @@ class CashierController extends Controller
         $this->messaging = app('firebase.messaging');
     }
 
+    function refundOrder(Order $order, Request $request)
+    {
+        // $client = new \GuzzleHttp\Client();
+        DB::beginTransaction();
+        try {
+            // $orderId = $order->id;
+            $fcmTokens = Fcm::where('user_id', $order->user_id)->get();
+
+            $deviceTokens = [];
+            foreach ($fcmTokens as $fcmToken) {
+                $deviceTokens[] = $fcmToken->fcm_token;
+            }
+            $amount = $order->grandtotal;
+            Log::info("amount : " . $amount);
+            $reason = $request->reason;
+            Log::info("reason : " . $reason);
+            // $response = $client->request('POST', "https://api.sandbox.midtrans.com/v2/$orderId/refund/online/direct", [
+            //     'body' => '{"refund_key":"' . $orderId . '","amount":' . $amount . ',"reason":"' . $reason . '"}',
+            //     'headers' => [
+            //         'accept' => 'application/json',
+            //         'authorization' => 'Basic U0ItTWlkLXNlcnZlci1mcDZCRjJUT2VUWjhnOW8wcEdhTW5HdE46',
+            //         'content-type' => 'application/json',
+            //     ],
+            // ]);
+
+            // $body = json_decode($response->getBody(), true);
+            // $status_code = $body['status_code'];
+            // $status_message = $body['status_message'];
+            // Log::info("status_code : " . $status_code);
+            // Log::info("status_message : " . $status_message);
+            // if ($status_code ==  200) {
+            //     $order->order_status = 'refund';
+            //     $order->save();
+            //     return response()->json(['isSuccess' => true, 'errorMessage' => null, 'data' => $body]);
+            // }
+
+            $transactionId = $order->transaction[0]->transaction_id;
+            $order->order_status = "Refund";
+            $order->refund_reason = $reason;
+            $order->finished_at = Carbon::now();
+            $order->save();
+
+            if (count($deviceTokens) > 0) {
+                $title = "Refunded!";
+                $body = "Order " . $order->id . " has refunded. Due to some reason";
+                $notification = Notification::create($title, $body);
+
+                $data = ['transaction_id' => $transactionId];
+                $message = CloudMessage::new()->withNotification($notification)->withData($data);
+
+                $this->messaging->sendMulticast($message, $deviceTokens);
+            }
+            DB::commit();
+            return response()->json(['isSuccess' => true]);
+            // return response()->json(['isSuccess' => false, 'errorMessage' => $status_message, 'data' => null]);
+        } catch (Exception $e) {
+            Log::error("error : " . $e->getMessage());
+            DB::rollBack();
+            return response()->json(['isSuccess' => false, 'errorMessage' => $e->getMessage()]);
+        }
+    }
+
     public function finishOrder(Order $order)
     {
         $fcmTokens = Fcm::where('user_id', $order->user_id)->get();
@@ -178,6 +240,10 @@ class CashierController extends Controller
                 [
                     "status" => "Booking",
                     "orders" => []
+                ],
+                [
+                    "status" => "Refund",
+                    "orders" => []
                 ]
             ];
 
@@ -209,6 +275,8 @@ class CashierController extends Controller
                     $statuses[3]['orders'][] = $order;
                 } else if ($status == "Booking") {
                     $statuses[4]['orders'][] = $order;
+                } else if ($status == "Refund") {
+                    $statuses[5]['orders'][] = $order;
                 }
             }
 
